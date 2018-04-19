@@ -23,7 +23,7 @@ export class TokenInterceptor implements HttpInterceptor {
     constructor(private preferencesService: PreferencesService){}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let token = this.preferencesService.getToken();
+        let token = this.preferencesService.getMockToken();
         console.log('INTERCEPTOR: token -> ' + token);
         if(token == null) {
             return next.handle(request);
