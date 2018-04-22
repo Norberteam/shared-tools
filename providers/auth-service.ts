@@ -1,4 +1,4 @@
-import { AppLocalStorageService } from './../../src/components/services/app-localstorage.service';
+import { AppLocalStorageService } from './app-localstorage.service';
 import { RemoteServiceProvider } from './../../src/components/services/remote-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

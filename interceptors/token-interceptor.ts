@@ -1,5 +1,4 @@
 import { PreferencesService } from './../../src/components/services/app-preferences.service';
-import { AppLocalStorageService } from './../../src/components/services/app-localstorage.service';
 import { Injectable } from '@angular/core';
 import {
     HttpRequest,
