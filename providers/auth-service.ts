@@ -1,5 +1,4 @@
 import { AppLocalStorageService } from './app-localstorage.service';
-import { RemoteServiceProvider } from './../../src/components/services/remote-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Rx from "rxjs/Rx";
@@ -14,7 +13,7 @@ import { AppService } from '../../src/components/services/app.service';
 */
 @Injectable()
 export class AuthService {
-  constructor(public http: HttpClient, private remoteService: RemoteServiceProvider,
+  constructor(public http: HttpClient,
     private appLocalStorageService: AppLocalStorageService, private httpClient: HttpClient, private app: AppService) {
     console.log('Hello AuthServiceProvider Provider');
   }
@@ -51,10 +50,13 @@ export class AuthService {
         // Map response to UserProfile object
         let previousProfile = this.getUserProfile();
         var userProfile: any;
+        console.log('Login info: ' + loginInfo);
+        console.log('Provider found : ' + loginInfo.profiles[0].profile._json.provider);
         if(!previousProfile) {
             userProfile = {
                 token: token,
                 _id: userId,
+                provider: loginInfo.profiles[0].profile._json.provider,
                 email: loginInfo.profiles[0].profile._json.email,
                 firstName: loginInfo.profiles[0].profile._json.given_name,
                 lastName: loginInfo.profiles[0].profile._json.family_name,
@@ -69,6 +71,7 @@ export class AuthService {
                 token: token,
                 _id: userId,
                 email: loginInfo.profiles[0].profile._json.email,
+                provider: loginInfo.profiles[0].profile._json.provider,
                 firstName: loginInfo.profiles[0].profile._json.given_name,
                 lastName: loginInfo.profiles[0].profile._json.family_name,
                 displayName: loginInfo.profiles[0].profile._json.name,
