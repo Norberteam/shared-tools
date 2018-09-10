@@ -1,0 +1,24 @@
+<!-- Header -->
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-buttons left>
+            <button color="primary" ion-button icon-only class="btn-close" (click)="backClicked()">
+                <ion-icon name="norbert-chevron-left"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons right *ngIf="showAction">
+            <button ion-button color="primary" class="btn-clear" (click)="actionClicked()">
+                {{ actionLabel || 'MODAL.SHARED.DELETE' | translate }}
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<!-- Content -->
+<ion-content class="content" #modalContent>
+    <div class="center-wrapper">
+        <div class="center-contents">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,95 @@
+fd-card {
+    $fd-card-height: 96px;
+    $fd-card-padding: 8px;
+
+    .fd__card{
+        background-color: color($colors, clean);
+        border-radius: 8px;
+        margin-bottom: 16px;
+        position: relative;
+        transition: background-color .3s;
+        @include app-box-shadow();
+
+        &:hover{
+            background-color: lighten(color($colors, fd-grey10), 35%);
+        }
+
+        .card__chevron{
+            font-size: map-get($fontSizes, md);
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .card__container{
+            padding: 8px 40px 8px 16px;
+            position: relative;
+        }
+
+        .card__content,
+        .card__footer{
+            width: 100%;
+        }
+
+        .card__footer{
+            box-sizing: border-box;
+            padding: 16px;
+
+            .fd__button{
+                margin: 0;
+            }
+        }
+
+        &.card--with-image{
+            .card__container{
+                &:after{
+                    clear: both;
+                    content: "";
+                    display: table;
+                }
+
+                .card__image,
+                .card__content{
+                    float: left;
+                }
+
+                .card__image{
+                    display: block;
+                    height: $fd-card-height;
+                    position: relative;
+                    width: 32.89%;
+
+                    .image{
+                        background-color: color($colors, secondary);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        border-radius: 8px 0 0 8px;
+                        height: calc(100% + 16px);
+                        left: (($fd-card-padding * 2) * - 1);
+                        position: absolute;
+                        top: ($fd-card-padding * - 1);
+                        width: calc(100% + 16px);
+                    }
+                }
+    
+                .card__content{
+                    box-sizing: border-box;
+                    padding-left: 16px;
+                    width: 67.11%
+                }
+            }
+
+            &.card--with-button{
+                .card__container{
+                    .card__image{
+                        .image{
+                            border-bottom-left-radius: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

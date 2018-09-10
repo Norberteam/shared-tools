@@ -1,0 +1,57 @@
+.ios,
+.md{
+    fd-input {
+        width: 100%;
+        
+        ion-label{
+            color: color($colors, secondary);
+            
+            &.label-ios,
+            &.label-md{
+                &[stacked]{
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+        ion-input{
+            background-color: lighten(color($colors, greyDark), 65%);
+            border: 1px solid transparent;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: color($colors, text);
+            font-size: map-get($fontSizes, sm);
+            font-weight: 300;
+            padding-left: 7px;
+
+            .text-input{
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+
+            &:hover{
+                border-color: color($colors, secondary);
+            }
+
+            &.input--invalid{
+                border-color: color($colors, danger);
+
+                &:hover{
+                    border-color: darken(color($colors, danger), 15%);
+                }
+            }
+        }
+
+        .form__error{
+            animation: 1s alertAnim forwards;
+            margin-top: 16px;
+
+            .error__message{
+                color: color($colors, danger);
+                font-size: map-get($fontSizes, xs);
+                font-weight: 300;
+            }
+        }
+    }
+
+}

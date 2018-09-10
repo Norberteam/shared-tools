@@ -1,0 +1,47 @@
+.md,
+.ios{
+    fd-checkbox {
+        ion-item{
+            &.item{
+                ion-checkbox{
+                    &.checkbox{
+                        margin-right: 8px;
+        
+                        .checkbox-icon{
+                            background-color: transparent;
+                            border: 2px solid color($colors, primary);
+                            border-radius: 4px;
+                            height: 18px;
+                            width: 18px;
+                
+                            &.checkbox-checked{
+                                background-color: color($colors, primary);
+
+                                &:after{
+                                    color: color($colors, clean);
+                                    content: "\e920";
+                                    font-family: "norbert-fonticon";
+                                    font-size: map-get($fontSizes, xs);
+                                    left: 0;
+                                    line-height: 16px;
+                                    position: absolute;
+                                    text-align: center;
+                                    top: 0;
+                                    width: 100%;
+                                }
+                                .checkbox-inner{
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        ion-label{
+            color: color($colors, text);
+            font-size: map-get($fontSizes, sm);
+        }
+    }
+}

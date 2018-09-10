@@ -1,0 +1,27 @@
+<!-- Header -->
+<ion-header *ngIf="showHeader" no-border>
+    <ion-toolbar>
+        <ion-buttons left>
+            <button color="primary" ion-button icon-only class="btn-close" (click)="closeClicked()">
+                <ion-icon name="md-close"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons right>
+            <button ion-button color="secondary" class="btn-clear" (click)="clearClicked()">
+                {{ rightButtonLabel || 'MODAL.SHARED.DELETE' | translate }}
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<!-- Content -->
+<ion-content #modalContent class="show-submit">
+    <div class="center-wrapper">
+        <div class="center-contents">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</ion-content>
+
+<!-- Submit -->
+<validate-button (click)="submitClicked()" [text]="buttonLabel || 'MESSAGE.SUBMIT' | translate" *ngIf="showButton"></validate-button>

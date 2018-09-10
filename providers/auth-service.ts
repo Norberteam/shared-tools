@@ -1,9 +1,8 @@
 import { AppLocalStorageService } from './app-localstorage.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import Rx from "rxjs/Rx";
 import { Constants } from '../../src/app/app.constants';
-import { AppService } from '../../src/components/services/app.service';
+import { AppService } from './app.service';
 
 /*
   Generated class for the AuthServiceProvider provider.
@@ -91,7 +90,7 @@ export class AuthService {
   loginSuccess(profile: any) {
     // Store mapped login profile within local database
     console.log('Storing user profile: ' + JSON.stringify(profile));
-    this.app.showToast('Login success!');
+    this.app.showToastMessage('Login success!');
     this.saveUserProfile(profile);
   }
 }

@@ -1,0 +1,7 @@
+<button ion-button full 
+*ngIf="label" 
+class="fd__form fd__button" 
+[ngClass]="{ 'fd__button--primary': style && style === 'primary' || !style, 'fd__button--secondary': style && style === 'secondary', 'fd__button--default': style && style === 'default' }" 
+[type]="type ? type : 'button'" 
+[disabled]="disabled ? disabled : null"
+(click)="fdButtonClick()">{{ label }}</button>

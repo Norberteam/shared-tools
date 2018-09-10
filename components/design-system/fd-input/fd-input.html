@@ -1,0 +1,17 @@
+<div class="fd__form form__control">
+  <ion-item>
+    <ion-label stacked *ngIf="label">{{ label }}</ion-label>
+    <ion-input 
+    [type]="type ? type : 'text'" 
+    [placeholder]="placeholder ? placeholder : ''" 
+    [value]="value ? value : ''" 
+    (input)="onChange($event)"
+    [disabled]="disabled ? disabled : false"
+    [ngClass]="{ 'input--invalid': control && control.invalid  && control.touched }"></ion-input>
+  </ion-item>
+  <div class="form__error" *ngIf="control && control.invalid && control.touched">
+    <div class="error_container" *ngFor="let err of error">
+      <span class="error__message" *ngIf="control.invalid && control.errors[err.type]">{{ err.message }}</span>
+    </div>
+  </div>
+</div>
