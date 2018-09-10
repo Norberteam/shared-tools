@@ -1,6 +1,6 @@
 import {Injectable, OnInit} from "@angular/core";
 import {Loading, LoadingController, ToastController, Platform} from 'ionic-angular';
-import {Constants} from '../../src/app.constants';
+import {Constants} from '../../src/app/app.constants';
 import {AppLocalStorageService} from './app-localstorage.service';
 
 @Injectable()
