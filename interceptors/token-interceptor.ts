@@ -1,4 +1,4 @@
-import { PreferencesService } from './../../src/components/services/app-preferences.service';
+import { PreferencesService } from './../../src/providers/app-preferences.service';
 import { Injectable } from '@angular/core';
 import {
     HttpRequest,
