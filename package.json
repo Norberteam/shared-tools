@@ -1,0 +1,15 @@
+{
+  "name": "SharedTools",
+  "private": true,
+  "dependencies": {
+    "@ionic-native/barcode-scanner": "4.5.2",
+    "@ionic-native/qr-scanner": "4.5.2",
+    "@ionic/pro": "1.0.20",
+    "@types/lodash": "^4.14.107",
+    "lodash": "^4.17.5",
+    "mapbox-gl": "^0.41.0",
+    "moment": "^2.20.1",
+    "phonegap-plugin-barcodescanner": "^7.1.2",
+    "rxjs": "5.5.6"
+  }
+}
