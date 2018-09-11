@@ -1,0 +1,79 @@
+.btn-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px 10px;
+    background-color: white;
+    z-index: 50;
+    text-align: center;
+    @include app-box-shadow();
+
+    .button {
+        margin: 0 auto;
+
+        &:first-child {
+            margin-right: 10px;
+        }
+
+        &.button-outline {
+            background: none !important;
+            color: color($colors, text);
+            border-color: color($colors, border);
+
+            .button-inner {
+                padding-left: 10px;
+            }
+
+            ion-icon {
+                position: absolute;
+                left: 15px;
+                top: 2px;
+                color: color($colors, primary);
+            }
+        }
+
+        &.full-button {
+            width: calc(100% - 20px);
+            margin-right: 0px;
+        }
+
+        ion-icon {
+            font-size: map-get($fontSizes, lg);
+        }
+    }
+}
+
+.button--text{
+    border: 1px solid color($colors, border);
+    color: color($colors, text);
+    font-weight: 600;
+}
+
+.footer__buttons{
+    background-color: color($colors, clean);
+    border-top: 1px solid color($colors, border);
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+    position: absolute;
+    width: 100%;
+
+    @include app-for-size("phone-md"){
+        border-top: none;
+    }
+
+    button{
+        margin-bottom: 15px;
+        margin-top: 15px;
+        text-transform: none;
+
+        &:first-child{
+            margin-top: 5px;
+        }
+
+        &:last-child{
+            margin-bottom: 5px;
+        }
+    }
+}

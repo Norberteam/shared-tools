@@ -1,0 +1,8 @@
+.alert-button-group {
+    .alert-button {
+        font-size: map-get($fontSizes, sm);
+        &:last-child {
+            color: color($colors, text);
+        }
+    }
+}

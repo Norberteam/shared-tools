@@ -1,0 +1,17 @@
+form {
+    @include app-animations();
+    
+    ion-input {
+        color: color($colors, text);
+    }
+
+    .form-error {
+        animation: 1s alertAnim forwards;
+        color: color($colors, danger);
+
+        > p {
+            font-size: map-get($fontSizes, xs);
+            margin: 4px 0;
+        }
+    }
+}

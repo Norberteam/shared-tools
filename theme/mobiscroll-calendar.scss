@@ -1,0 +1,79 @@
+.md, .ios {
+
+    .mbsc-calendar {
+        padding: 5px;
+
+        * { font-family: $font-family-base; }
+
+        .mbsc-fr-w { background: none; }
+
+        .mbsc-cal {
+
+            div {
+                color: color($colors, text);
+                font-weight: 500;
+                font-size: map-get($fontSizes, sm);
+            }
+
+            // Header hide
+            .mbsc-cal-header { display: none; }
+
+            // Body - weeks
+            .mbsc-cal-days {
+                color: color($colors, text);
+                div {
+                    color: color($colors, secondary);
+                    font-size: map-get($fontSizes, sm);
+                }
+                th { font-size: map-get($fontSizes, sm); font-weight: 500; border: none; }
+            }
+
+            // Body - days
+            .mbsc-cal-day { padding: 5px 0; border: none; }
+            .mbsc-cal-day-fg {
+                color: color($colors, text);
+                font-size: map-get($fontSizes, sm);
+                font-weight: 500;
+                width: 2.5em;
+                height: 2.5em;
+                line-height: 2.1em;
+                border-radius: 2em;
+                margin: 0 auto;
+            }
+
+            .mbsc-cal-sc-sel .mbsc-cal-sc-cell-i, .mbsc-cal-day-sel .mbsc-cal-day-i {
+                background: none;
+                color: color($colors, primary);
+
+                .mbsc-cal-day-fg { background-color: color($colors, primary); color: color($colors, clean); }
+            }
+
+            // Body - marked day
+            .mbsc-cal-day-m-c { background: color($colors, primary); }
+
+            .mbsc-cal-today .mbsc-cal-day-date {
+                border: 2px solid color($colors, primary);
+                line-height: 1.8em;
+            }
+
+            .mbsc-selected .mbsc-cal-day-date {
+                color: color($colors, clean);
+                background: color($colors, primary);
+                border-color: color($colors, primary);
+                @include app-box-shadow("primary");
+            }
+
+            .mbsc-cal-day-date {
+                margin: 0.1em 0;
+                width: 1.875em;
+                height: 1.875em;
+                line-height: 2em;
+                border-radius: 2em;
+            }
+
+            .mbsc-cal-mark {
+                background: color($colors, secondary);
+            }
+        }
+    }
+}

@@ -1,0 +1,92 @@
+@mixin app-box-shadow($type: "") {
+    @if $type == "" or $type == "default" {
+        box-shadow: map-get($boxShadow, default);
+        -webkit-box-shadow: map-get($boxShadow, default);
+    } @else if $type == "full" {
+      box-shadow: map-get($boxShadow, full);
+      -webkit-box-shadow: map-get($boxShadow, full);  
+    } @else if $type == "primary" {
+        box-shadow: map-get($boxShadow, primary);
+        -webkit-box-shadow: map-get($boxShadow, primary);
+    }
+}
+
+@mixin app-text-shadow() {
+    -webkit-text-shadow: 0 2px 2px rgba(black, 0.5);
+    text-shadow: 0 2px 2px rgba(black, 0.5);
+}
+
+@mixin app-drop-shadow() {
+    -webkit-filter: drop-shadow(-2px 2px 1px $greyLight);
+    filter: drop-shadow(-2px 2px 1px $greyLight);
+}
+
+@mixin app-no-shadow() {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-text-shadow: none;
+    text-shadow: none;
+    -webkit-filter: none;
+    filter: none;
+}
+
+@mixin app-gradient($colorStart, $colorStartPourcent, $colorEnd, $deg) {
+    background-color: $colorStart;
+    background: -moz-linear-gradient($deg, $colorStart $colorStartPourcent, $colorEnd 100%); /* ff3.6+ */
+    background: -webkit-linear-gradient($deg, $colorStart $colorStartPourcent, $colorEnd 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient($deg, $colorStart $colorStartPourcent, $colorEnd 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient($deg, $colorStart $colorStartPourcent, $colorEnd 100%); /* ie10+ */
+    background: linear-gradient($deg, $colorStart $colorStartPourcent, $colorEnd 100%); /* w3c */
+}
+
+@mixin app-animations(){
+    @keyframes alertAnim {
+        from{
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to{
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+    }
+
+    @keyframes fadeUp{
+        from{
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to{
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+
+    @keyframes opacityUp{
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: .4;
+        }
+    }
+}
+
+@mixin app-for-size($size){
+    @if $size == "phone-sm" {
+        @media (max-width: 320px){ @content; }
+    } @else if $size == "phone-md" {
+        @media (min-width: 360px){ @content; }
+    }@else if $size == "phone-lg" {
+        @media (min-width: 425px){ @content; }
+    }
+}
+
+@mixin app-vertical-align(){
+    //Article used to vertical-align the content:
+    //http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/  
+    
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

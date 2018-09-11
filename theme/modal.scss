@@ -1,0 +1,48 @@
+.md, .ios {
+    ion-modal {
+        .ion-page {
+            .header {
+                > .toolbar {
+                    padding: 0 $appMarginH;
+
+                    .toolbar-background {
+                        background: none;
+                        border: none;
+                    }
+                }
+
+                &:after {
+                    background: none;
+                }
+            }
+
+            .content {
+                z-index: 1;
+            }
+        }
+
+        &.modal--popup{
+            padding-top: 16px;
+
+            .modal-wrapper{
+                // height: 90%;
+                // transform: translateX(5%) translateY(5%) !important; //Needed to revert the inline attribute.
+                // width: 90%;
+                
+                @include app-for-size(phone-md){
+                    height: 85%;
+                    transform: translateX(9%) translateY(10%) !important;
+                    width: 85%;
+                    @include app-box-shadow("full");
+                }
+            }
+
+            ion-backdrop{
+                background-color: color($colors, clean);
+                opacity: 0.8 !important;  //Needed to revert the inline attribute.
+                visibility: visible;
+                z-index: 0;
+            }
+        }
+    }
+}

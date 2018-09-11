@@ -1,0 +1,137 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+$font-path: "../assets/fonts";
+
+@import "ionic.globals";
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+$appMarginH: 20px;
+$animationDuration : 1.1s;
+$profileAvatarSize: 70px;
+$profileItemSize: 50px;
+$navbarHeight: 60px;
+
+$fontSizes: (
+  xxs: 1.2rem, //12pt
+  xs: 1.4rem, //14pt
+  sm: 1.6rem, //16pt
+  smd: 1.8rem, // 18pt
+  md: 2.1rem, //21pt
+  lg: 2.8rem, //28pt
+  xl: 3.7rem, //37pt
+  xxl: 4.9rem //49pt
+);
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+    primary: #FF5A5A,
+    secondary: #005B70,
+    secondaryLight: #008489,
+    beigeN: #F4E9DA,
+    danger: #dc143c,
+    light: #f0f0f0,
+    dark: #1F1C23,
+    darkLight: #26242F,
+    greyDark: rgba(72, 72, 72, 0.6),
+    border: rgba(72, 72, 72, 0.3),
+    greyLight: #999999,
+    clean: white,
+    warning: orange,
+    text: rgba(72, 72, 72, 0.8),
+    titleGrey: rgba(56, 56, 56, 0.8),
+    borderButton: #979797,
+    secondaryDark: #09495D,
+    pinkLight: #FC404D,
+    black: #000000,
+
+    fd-grey: rgb(72,72,72),
+    fd-grey80 : rgba(72,72,72, .8),
+    fd-grey70 : rgba(72,72,72, .7),
+    fd-grey60 : rgba(72,72,72, .6),
+    fd-grey50 : rgba(72,72,72, .5),
+    fd-grey40 : rgba(72,72,72, .4),
+    fd-grey30 : rgba(72,72,72, .3),
+    fd-grey20 : rgba(72,72,72, .2),
+    fd-grey10 : rgba(72,72,72, .1),
+    fd-grey05 : rgba(72,72,72, .05),
+);
+
+$boxShadow: (
+  default: 0 5px 10px 0 rgba(color($colors, dark), .1),
+  primary: 0 2px 5px 0 rgba(color($colors, primary), .5),
+  full: 0 0 10px 0 rgba(color($colors, dark), .1)
+);
+
+$background-color: color($colors, clean);
+//$tabs-background: color($colors, 'darkLight');
+$tabs-tab-color-active: color($colors, primary);
+
+$list-inset-md-margin-top: 6px;
+$list-inset-md-margin-right: $list-inset-md-margin-top;
+$list-inset-md-margin-bottom: $list-inset-md-margin-top;
+$list-inset-md-margin-left: $list-inset-md-margin-top;
+$list-inset-ios-margin-top: $list-inset-md-margin-top;
+$list-inset-ios-margin-right: $list-inset-md-margin-top;
+$list-inset-ios-margin-bottom: $list-inset-md-margin-top;
+$list-inset-ios-margin-left: $list-inset-md-margin-top;
+
+@mixin linear-gradient($degree, $from, $to) {
+  background: $from; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient($degree, $from, $to); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($degree, $from, $to); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($degree, $from, $to); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($degree, $from, $to); /* Standard syntax */
+}
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+// In order to make custom icons work and not break ionic icons, change ionic.ionicons to ionicons
+// @import "ionic.ionicons";
+@import "ionicons";
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";
+
+$font-family-base: "Avenir", "Helvetica Neue", "Roboto", sans-serif;
+$font-family-ios-base: $font-family-base;
+$font-family-md-base: $font-family-base;
+$font-family-wp-base: $font-family-base;
