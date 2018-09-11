@@ -11,5 +11,11 @@
     "moment": "^2.20.1",
     "phonegap-plugin-barcodescanner": "^7.1.2",
     "rxjs": "5.5.6"
+  },
+  "devDependencies": {
+    "event-stream": "^3.3.4",
+    "gulp": "^3.9.1",
+    "gulp-preprocess": "^2.0.0",
+    "gulp-rename": "^1.2.2"    
   }
 }
