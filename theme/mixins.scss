@@ -79,6 +79,8 @@
         @media (min-width: 360px){ @content; }
     }@else if $size == "phone-lg" {
         @media (min-width: 425px){ @content; }
+    }@else if($size == "tablet-md"){
+        @media (min-width: 768px){ @content }
     }
 }
 

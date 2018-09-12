@@ -44,5 +44,18 @@
                 z-index: 0;
             }
         }
+
+        &.modal--fullscreen{
+            .modal-wrapper{
+                @include app-for-size("tablet-md"){
+                    border-radius: 0;
+                    height: 100%;
+                    left: 0;
+                    overflow: auto;
+                    top: 0;
+                    width: 100%;
+                }
+            }
+        }        
     }
 }
