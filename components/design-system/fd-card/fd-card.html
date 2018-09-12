@@ -1,4 +1,4 @@
-<div class="fd__card" [ngClass]="{ 'card--with-image': image, 'card--with-button': button }">
+<div class="fd__card" [ngClass]="{ 'card--with-image': image, 'card--with-button': button, 'card--with-chevron': chevron }">
   <div class="card__container" (click)="fdCardClick()">
     <ion-icon class="card__chevron" name="norbert-chevron-right" color="primary" *ngIf="chevron"></ion-icon>
     <div class="card__image" *ngIf="image">
