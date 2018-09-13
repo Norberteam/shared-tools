@@ -35,5 +35,15 @@ fd-button {
                 background-color: darken(color($colors, clean), 5%);
             }
         }
+
+        &.button-md,
+        &.button-md.activated{
+            box-shadow: none;
+            text-transform: none;
+        }
+
+        ion-icon{
+            margin-right: 8px;
+        }
     }
 }

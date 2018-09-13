@@ -9,6 +9,8 @@ import { AbstractValueAcessor, MakeProvider } from '../abstract-value-acessor';
 export class FlitdeskInputComponent extends AbstractValueAcessor<string> {
   @Input('label') label: string;
   @Input('placeholder') placeholder: string;
+  @Input('labelPlacement') labelPlacement: string;
+  @Input('icon') icon: string;
   @Input('type') type: string;
   @Input('value') value: string;
   @Input('disabled') disabled: boolean;
