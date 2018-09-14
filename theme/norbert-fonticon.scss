@@ -39,6 +39,14 @@
     }
 }
 
+@include makeIcon(arrow-left, '\e92e');
+@include makeIcon(arrow-right, '\e92f');
+@include makeIcon(arrow-bottom, '\e92d');
+@include makeIcon(arrow-top, '\e930');
+@include makeIcon(email, '\e927');
+@include makeIcon(enterprise, '\e928');
+@include makeIcon(job, '\e92a');
+@include makeIcon(user, '\e92c');
 @include makeIcon(chevron-bottom, '\e900');
 @include makeIcon(chevron-left, '\e901');
 @include makeIcon(chevron-right, '\e91e');
@@ -78,5 +86,5 @@
 @include makeIcon(search-where, '\e91b');
 @include makeIcon(services, '\e91c');
 @include makeIcon(sync, '\e91d');
-@include makeIcon(house, '\e927');
-@include makeIcon(qrCode, '\e928');
+@include makeIcon(house, '\e929');
+@include makeIcon(qrCode, '\e92b');
