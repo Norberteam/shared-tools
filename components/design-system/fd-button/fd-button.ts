@@ -6,6 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FlitdeskButtonComponent {
   @Input('label') label: string;
+  @Input('icon') icon: string;
   @Input('type') type: string;
   @Input('style') style: string;
   @Input('disabled') disabled: boolean;

@@ -1,0 +1,42 @@
+.ios, 
+.md{
+    ion-header{
+        &.header--unfixed{
+            position: relative;
+        }
+
+        &.header-md{
+            &::after{
+                display: none;
+            }
+        }
+
+        ion-navbar,
+        ion-toolbar{
+            &.toolbar,
+            &.toolbar-ios,
+            &.toolbar-md{
+                min-height: $navbarHeight;
+                padding-left: $appMarginH;
+                padding-right: $appMarginH;
+
+                .back-button{
+                    color: color($colors, text);
+                }
+            }
+            
+            .toolbar-background{
+                background-color: transparent;
+                border-color: transparent;
+            }
+            
+            .button--text{
+                border: none;
+                font-size: 1.4rem;
+                font-weight: 300;
+                text-transform: none;
+            }
+        }
+    }
+
+}

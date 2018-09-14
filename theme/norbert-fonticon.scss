@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'norbert-fonticon';
+    src: url('../assets/fonts/norbert-fonticon.eot?u55nh0');
+    src: url('../assets/fonts/norbert-fonticon.eot?u55nh0#iefix') format('embedded-opentype'),
+    url('../assets/fonts/norbert-fonticon.ttf?u55nh0') format('truetype'),
+    url('../assets/fonts/norbert-fonticon.woff?u55nh0') format('woff'),
+    url('../assets/fonts/norbert-fonticon.svg?u55nh0#norbert-fonticon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="norbert-"], [class*=" norbert-"],
+[class^="ion-ios-norbert-"], [class*=" ion-ios-norbert-"],
+[class^="ion-md-norbert-"], [class*=" ion-md-norbert-"],
+[class^="ion-wp-norbert-"], [class*=" ion-wp-norbert-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'norbert-fonticon' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    display: inline-block;
+    font-size: map-get($fontSizes, sm);
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin makeIcon($arg, $val) {
+    .norbert-#{$arg}:before,
+    .ion-ios-norbert-#{$arg}:before,
+    .ion-ios-norbert-#{$arg}-outline:before,
+    .ion-md-norbert-#{$arg}:before,
+    .ion-md-norbert-#{$arg}-outline:before {
+        content: $val;
+    }
+}
+
+@include makeIcon(chevron-bottom, '\e900');
+@include makeIcon(chevron-left, '\e901');
+@include makeIcon(chevron-right, '\e91e');
+@include makeIcon(chevron-top, '\e91f');
+@include makeIcon(check, '\e920');
+@include makeIcon(clock, '\e921');
+@include makeIcon(filter, '\e922');
+@include makeIcon(instant, '\e923');
+@include makeIcon(logout, '\e924');
+@include makeIcon(pin, '\e925');
+@include makeIcon(terms, '\e926');
+@include makeIcon(open-space, '\e902');
+@include makeIcon(private-office, '\e903');
+@include makeIcon(phone-both, '\e904');
+@include makeIcon(meeting-room, '\e905');
+@include makeIcon(access-security, '\e906');
+@include makeIcon(add-more, '\e907');
+@include makeIcon(arrow, '\e908');
+@include makeIcon(book, '\e909');
+@include makeIcon(bow-tie, '\e90a');
+@include makeIcon(camera, '\e90b');
+@include makeIcon(close-delete, '\e90c');
+@include makeIcon(comment, '\e90d');
+@include makeIcon(contact, '\e90e');
+@include makeIcon(logo-search, '\e90f');
+@include makeIcon(mail, '\e910');
+@include makeIcon(notifs, '\e911');
+@include makeIcon(phone, '\e912');
+@include makeIcon(planning, '\e913');
+@include makeIcon(plus, '\e914');
+@include makeIcon(profile, '\e915');
+@include makeIcon(request-intervention, '\e916');
+@include makeIcon(request-order, '\e917');
+@include makeIcon(search-people, '\e918');
+@include makeIcon(search-preview, '\e919');
+@include makeIcon(search-when, '\e91a');
+@include makeIcon(search-where, '\e91b');
+@include makeIcon(services, '\e91c');
+@include makeIcon(sync, '\e91d');
+@include makeIcon(house, '\e927');
+@include makeIcon(qrCode, '\e928');

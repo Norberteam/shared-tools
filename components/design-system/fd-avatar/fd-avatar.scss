@@ -1,0 +1,28 @@
+fd-avatar {
+    .fd__avatar{
+        background-color: color($colors, fd-grey10);
+        border-radius: 100%;
+        box-sizing: border-box;
+        height: $profileAvatarSize;
+        position: relative;
+        text-align: center;
+        width: $profileAvatarSize;
+
+        .avatar__photo{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        ion-icon{
+            color: color($colors, text);
+            font-size: map-get($fontSizes, xl);
+            line-height: $profileAvatarSize;
+        }
+    }
+}

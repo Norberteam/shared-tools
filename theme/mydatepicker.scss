@@ -1,0 +1,270 @@
+my-date-picker {
+
+    display: block;
+
+    .mydp {
+
+        * {
+            font-family: $font-family-base;
+        }
+        .daycell:focus, .monthcell:focus, .yearcell:focus {
+            outline: none;
+        }
+        table {
+            height: auto;
+            border-radius: 0;
+        }
+
+        border-radius: 0px;
+
+        .selector {
+            border-radius: 0;
+            &:focus {
+                border: none;
+            }
+        }
+
+        .markdate {
+            width: 100%;
+            height: 16px;
+            border-radius: 0px;
+            background-color: transparent !important;
+            bottom: 0;
+
+            &:after {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                color: color($colors, beigeN);
+            }
+
+            &[style="background-color: yellow;"]:after {
+                content: '●';
+            }
+            &[style="background-color: orange;"]:after {
+                content: '●●';
+            }
+            &[style="background-color: red;"]:after {
+                content: '●●●';
+            }
+
+        }
+
+        .inlinedp {
+
+            border: none;
+            margin-left: 0;
+
+            .header {
+
+                background: none;
+                border-radius: 0;
+
+                td {
+                    float: left;
+                    width: 100%;
+                    padding: 0 !important;
+                    text-align: center;
+
+                    > div {
+                        float: none !important;
+                        display: inline-block;
+                        padding: 15px 0 0;
+                    }
+                    button {
+                        margin: 0;
+                        background: none;
+                    }
+                    .headerbtncell {
+                        background: none;
+                        line-height: 30px;
+
+                        button {
+                            font-size: map-get($fontSizes, md);
+                            font-weight: 600;
+                        }
+                        .icon-mydpleft:before {
+                            content: '<';
+                        }
+                        .icon-mydpright:before {
+                            content: '>';
+                        }
+                    }
+                    .headerlabelbtn, .headerbtn {
+                        color: color($colors, beigeN);
+                        font-size: map-get($fontSizes, lg);
+                        font-weight: 500;
+                        height: auto;
+
+                        &:hover {
+                            color: rgba(color($colors, beigeN), 0.6);
+                            box-shadow: none;
+                        }
+                    }
+                    .headerbtn {
+                        width: 20px;
+                        height: 20px;
+                        margin: 6px 20px 0;
+                        font-size: map-get($fontSizes, md);
+                        color: rgba(color($colors, beigeN), 0.6);
+
+                        &:hover {
+                            color: color($colors, clean);
+                        }
+                    }
+
+                    .headermonthtxt, .headeryeartxt {
+                        width: auto;
+                        height: auto;
+                        max-width: none;
+                    }
+                    .monthlabel {
+                        font-size: map-get($fontSizes, md);
+                    }
+
+                    &:nth-child(3) {
+                        display: block;
+                        clear: left;
+
+                        .yearlabel {
+                            font-size: map-get($fontSizes, xs);
+                            font-weight: 500;
+                        }
+                        .headerbtncell {
+                            display: none;
+                        }
+                        > div {
+                            padding: 0 0 15px;
+                        }
+                    }
+                }
+            }
+
+            .caltable, .monthtable, .yeartable {
+
+                font-weight: 500;
+                font-size: map-get($fontSizes, sm);
+                background: none;
+
+                tbody > tr {
+
+                    height: 50px;
+
+                    .daycell, .monthcell, .yearcell {
+
+                        position: relative;
+                        background-color: transparent;
+                        color: color($colors, text);
+                        padding: 0;
+                        font-weight: 500;
+
+                        .datevalue, .monthvalue, .yearvalue {
+                            position: relative;
+                            width: 38px;
+                            height: 38px;
+                            margin: 0 auto;
+                            line-height: 38px;
+                            border-radius: 50%;
+                            background-color: transparent;
+                            font-weight: 500;
+                            color: color($colors, beigeN);
+
+                            > span {
+                                position: relative;
+                            }
+
+                            &.prevmonth, &.nextmonth {
+                                color: rgba(color($colors, beigeN), 0.6);
+                            }
+                        }
+
+                        &.selectedday, &.selectedmonth, &.selectedyear {
+
+                            .datevalue, .monthvalue, .yearvalue {
+
+                                color: color($colors, primary);
+
+                                animation: calendarSelect 300ms forwards;
+                                -webkit-animation: calendarSelect 300ms forwards;
+                                background-color: color($colors, beigeN);
+                            }
+
+                            @keyframes calendarSelect {
+
+                                from {
+                                    transform: scale(0);
+                                    -webkit-transform: scale(0);
+                                }
+
+                                to {
+                                    transform: scale(1);
+                                    -webkit-transform: scale(1);
+                                }
+                            }
+                        }
+
+                        &.disabled {
+                            .datevalue, .monthvalue, .yearvalue {
+                                color: rgba(color($colors, beigeN), 0.6);
+                            }
+                            .datevalue:before, .monthvalue:before, .yearvalue:before {
+                                background: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .caltable {
+
+                .weekdaytitleweeknbr, .daycellweeknbr {
+                    border: none;
+                }
+
+                thead > tr > .weekdaytitle {
+                    background: none;
+                    color: color($colors, beigeN);
+                    max-width: none;
+                    font-weight: 500;
+                    font-size: 0;
+                    padding: 8px 4px;
+                    text-align: center;
+
+                    &:first-letter {
+                        font-size: map-get($fontSizes, sm);
+                    }
+
+                    &:nth-child(6), &:nth-child(7) {
+                        color: color($colors, text);
+                    }
+                }
+            }
+
+            .yeartable {
+
+                .yearchangebtncell {
+                    background: darken(color($colors, primary), 10%);
+
+                    button {
+                        background: none;
+                    }
+                }
+
+                tbody > tr {
+
+                    .yearcell .yearvalue {
+                        width: 42px;
+                        height: 42px;
+                        line-height: 42px;
+                    }
+
+                    &:first-child, &:last-child {
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+}

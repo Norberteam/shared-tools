@@ -1,0 +1,61 @@
+// Form elements
+// --------------------------------------------------
+// - Inputs
+
+.fd__form{
+    ion-item{
+        background-color: color($colors, clean);
+        margin-bottom: 10px;
+        padding-left: 0;
+
+        &.item-ios,
+        &.item-md{
+            &.item-block{
+                .item-inner{
+                    border-bottom: none;
+                    padding-right: 0;
+                }
+            }
+
+            &.item-label-stacked{
+                .text-input{
+                    font-size: map-get($fontSizes, sm);
+                }
+            }
+        }
+
+        ion-label,
+        ion-label.label[stacked],
+        ion-input{
+            font-size: map-get($fontSizes, xs);
+        }
+
+        ion-label{
+            font-weight: 300;
+        }
+
+        &.item-input-disabled{
+            ion-input{
+                background-color: color($colors, clean);
+                border: none;
+                padding-left: 0;
+
+                .text-input[disabled]{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// Content
+// --------------------------------------------------
+// - Titles
+
+.fd__title,
+.fd__title ion-label{
+    color: color($colors, text);
+    font-size: map-get($fontSizes, lg);
+    font-weight: 600;
+    text-align: left;
+}
