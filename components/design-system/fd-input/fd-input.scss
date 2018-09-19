@@ -40,6 +40,7 @@
             border: 1px solid transparent;
             border-radius: 4px;
             box-sizing: border-box;
+            caret-color: color($colors, primary);
             color: color($colors, text);
             font-size: map-get($fontSizes, sm);
             font-weight: 300;
