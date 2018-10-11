@@ -51,10 +51,6 @@
                 margin-top: 10px;
             }
 
-            &:hover{
-                border-color: color($colors, secondary);
-            }
-
             &.input--invalid{
                 border-color: color($colors, danger);
 
@@ -62,6 +58,11 @@
                     border-color: darken(color($colors, danger), 15%);
                 }
             }
+
+            &.input--placeholder{
+                margin-bottom: 8px;
+                margin-top: 8px;
+            }            
         }
 
         .form__error{

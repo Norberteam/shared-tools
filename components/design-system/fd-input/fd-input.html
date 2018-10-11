@@ -13,7 +13,7 @@
       [value]="value ? value : ''" 
       (input)="onChange($event)"
       [disabled]="disabled ? disabled : false"
-      [ngClass]="{ 'input--invalid': control && control.invalid  && control.touched }"></ion-input>
+      [ngClass]="{ 'input--invalid': control && control.invalid  && control.touched, 'input--placeholder': !label && placeholder }"></ion-input>
     </ion-item>
     <div class="form__error" *ngIf="control && control.invalid && control.touched">
       <div class="error_container" *ngFor="let err of error">
