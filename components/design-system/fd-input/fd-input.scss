@@ -40,7 +40,6 @@
             border: 1px solid transparent;
             border-radius: 4px;
             box-sizing: border-box;
-            caret-color: color($colors, primary);
             color: color($colors, text);
             font-size: map-get($fontSizes, sm);
             font-weight: 300;
@@ -62,7 +61,11 @@
             &.input--placeholder{
                 margin-bottom: 8px;
                 margin-top: 8px;
-            }            
+            }
+
+            &.input--placeholder-with-icon{
+                font-family: norbert-fonticon, Avenir;
+            }
         }
 
         .form__error{

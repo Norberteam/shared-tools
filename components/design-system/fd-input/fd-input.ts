@@ -20,4 +20,19 @@ export class FlitdeskInputComponent extends AbstractValueAcessor<string> {
   constructor() {
     super();
   }
+
+  isUnicode(str){
+    let norbert = str.indexOf('norbert-');
+    let ion = str.indexOf('ion-');
+
+    return norbert < 0 && ion < 0 ? true : false;
+  }
+
+  getPlaceholder(){
+    if(this.placeholder){
+      return this.icon && this.isUnicode(this.icon) ? `${this.icon} ${this.placeholder}` : this.placeholder;
+    }else{
+      return '';
+    }
+  }
 }
