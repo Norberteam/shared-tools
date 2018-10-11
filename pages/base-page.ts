@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { AlertController, ToastController, ModalController, NavController, NavParams, Platform, Events } from 'ionic-angular';
+import { AlertController, ToastController, ModalController, NavController, NavParams, Platform, Events, ViewController } from 'ionic-angular';
 import { AppLocalStorageService } from '../providers/app-localstorage.service';
 import { AppService } from '../providers/app.service';
 import { RemoteServiceProvider } from '../../src/providers/remote-service';
@@ -20,6 +20,7 @@ export class BasePage {
     private _platform: Platform;
     private _events: Events;
     private _statusBar: StatusBar;
+    private _viewCtrl: ViewController;
 
     constructor(public injector: Injector) {}
 
@@ -45,6 +46,14 @@ export class BasePage {
             this._alertCtrl = this.injector.get(AlertController);
         }
         return this._alertCtrl;
+    }
+
+    // ViewController
+    public get viewCtrl(): ViewController {
+        if (!this._viewCtrl) {
+            this._viewCtrl = this.injector.get(ViewController);
+        }
+        return this._viewCtrl;
     }
 
     // StatusBar
@@ -152,5 +161,11 @@ export class BasePage {
             console.log('Dismissed toast');
         });
         toast.present();
+    }
+
+    public dismiss(error: Boolean) {
+        setTimeout(() => this.viewCtrl.dismiss({
+            error: error
+        }), 500);
     }
 }
