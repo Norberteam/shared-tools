@@ -39,10 +39,11 @@
     }
 }
 
-@include makeIcon(arrow-left, '\e92e');
+@include makeIcon(heart, '\e931');
+@include makeIcon(arrow-left, '\e930');
 @include makeIcon(arrow-right, '\e92f');
 @include makeIcon(arrow-bottom, '\e92d');
-@include makeIcon(arrow-top, '\e930');
+@include makeIcon(arrow-top, '\e92e');
 @include makeIcon(email, '\e927');
 @include makeIcon(enterprise, '\e928');
 @include makeIcon(job, '\e92a');
