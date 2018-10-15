@@ -1,6 +1,6 @@
 fd-avatar {
     .fd__avatar{
-        background-color: color($colors, fd-grey10);
+        background-color: lighten(color($colors, greyDark), 65%);
         border-radius: 100%;
         box-sizing: border-box;
         height: $profileAvatarSize;
