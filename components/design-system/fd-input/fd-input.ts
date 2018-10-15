@@ -15,6 +15,7 @@ export class FlitdeskInputComponent extends AbstractValueAcessor<string> {
   @Input('value') value: string;
   @Input('disabled') disabled: boolean;
   @Input('control') control: any;
+  @Input('touchValidation') touchValidation: boolean; 
   @Input('error') error: any;
   
   constructor() {

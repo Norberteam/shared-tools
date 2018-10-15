@@ -13,9 +13,9 @@
     [value]="value ? value : ''" 
     (input)="onChange($event)"
     [disabled]="disabled ? disabled : false"
-    [ngClass]="{ 'input--invalid': control && control.invalid  && control.touched, 'input--placeholder': !label, 'input--placeholder-with-icon': icon && isUnicode(icon) && placeholder }"></ion-input>
+    [ngClass]="{ 'input--invalid': (touchValidation) ? control && control.invalid  && control.touched : control && control.invalid && control.dirty, 'input--placeholder': !label, 'input--placeholder-with-icon': icon && isUnicode(icon) && placeholder }"></ion-input>
   </ion-item>
-  <div class="form__error" *ngIf="control && control.invalid && control.touched">
+  <div class="form__error" *ngIf="(touchValidation) ? control && control.invalid && control.touched : control && control.invalid && control.dirty">
     <div class="error_container" *ngFor="let err of error">
       <span class="error__message" *ngIf="control.invalid && control.errors[err.type]">{{ err.message }}</span>
     </div>
