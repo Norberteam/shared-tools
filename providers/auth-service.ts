@@ -1,6 +1,5 @@
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppLocalStorageService } from './app-localstorage.service';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Constants } from '../../src/app/app.constants';
 import { AppService } from './app.service';
@@ -13,8 +12,7 @@ import { AppService } from './app.service';
 */
 @Injectable()
 export class AuthService {
-  constructor(public http: HttpClient,
-    private appLocalStorageService: AppLocalStorageService, private httpClient: HttpClient, private app: AppService) {
+  constructor(private appLocalStorageService: AppLocalStorageService, private app: AppService) {
     console.log('Hello AuthServiceProvider Provider');
   }
 
