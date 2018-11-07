@@ -1,3 +1,4 @@
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppLocalStorageService } from './app-localstorage.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -92,5 +93,30 @@ export class AuthService {
     console.log('Storing user profile: ' + JSON.stringify(profile));
     this.app.showToastMessage('Login success!');
     this.saveUserProfile(profile);
+  }
+
+  // Remove credentials and partially local storage
+  removeLocalData() {
+    this.appLocalStorageService.remove(Constants.LS['USER']);
+    this.app.isAuth = false;
+  }
+
+  /**
+   * Destroy database/user data
+   * @return
+   */
+  logout(isAuth: boolean) {
+    const user = this.appLocalStorageService.get(Constants.LS['USER']);
+    const accessToken = user ? user.token : "";
+    let deepLink = false;
+
+    this.removeLocalData();
+    const redirectUrl = `${Constants.API_URL}/auth/logout?deepLink=${deepLink}&access_token=${accessToken}`;
+    this.openUrlInAppWebBrowser(redirectUrl);
+  }
+
+  openUrlInAppWebBrowser(url) {
+    const browser = new InAppBrowser();
+    const browserRef = browser.create(url, '_system');
   }
 }
