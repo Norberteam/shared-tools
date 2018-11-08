@@ -1,3 +1,4 @@
+import { Constants } from './../../src/app/app.constants';
 import { Component, Injector } from '@angular/core';
 import { AlertController, ToastController, ModalController, NavController, NavParams, Platform, Events, ViewController } from 'ionic-angular';
 import { AppLocalStorageService } from '../providers/app-localstorage.service';
@@ -21,12 +22,14 @@ export class BasePage {
     private _events: Events;
     private _statusBar: StatusBar;
     private _viewCtrl: ViewController;
+    protected pageName: string;
 
     constructor(public injector: Injector) {}
 
     ionViewWillEnter() {
         this.statusBar.overlaysWebView(false);
         this.statusBar.styleDefault();
+        this.events.publish(Constants.EVENT['NAVIGATION'], this.pageName);
     }
 
     ionViewWillLeave() {}
@@ -35,6 +38,12 @@ export class BasePage {
 
     openPage(page: string, params: any) {
         this.navCtrl.push(page, params);
+    }
+
+    setRootPage(page: string, params) {
+        if(page == 'users')
+            this.events.publish(Constants.EVENT['NAVIGATION_TEAM_NAME'], params.teamName);
+        this.navCtrl.setRoot(page, params);
     }
 
     // Get methods used to obtain instances from the injector just once
