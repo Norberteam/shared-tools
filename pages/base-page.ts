@@ -23,7 +23,7 @@ export class BasePage {
     private _statusBar: StatusBar;
     private _viewCtrl: ViewController;
     protected pageName: string;
-    protected isStarFlit: boolean = false;
+    public isStarFlitBasePage: boolean = false;
 
     constructor(public injector: Injector) {}
 
@@ -31,7 +31,7 @@ export class BasePage {
         this.statusBar.overlaysWebView(false);
         this.statusBar.styleDefault();
         this.events.publish(Constants.EVENT['NAVIGATION'], this.pageName);
-        this.isStarFlit = this.localStorageService.get(Constants.EVENT['STAR_FLIT']);
+        this.isStarFlitBasePage = this.localStorageService.get(Constants.EVENT['STAR_FLIT']);
     }
 
     ionViewWillLeave() {}
