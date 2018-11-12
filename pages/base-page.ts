@@ -24,6 +24,11 @@ export class BasePage {
     private _viewCtrl: ViewController;
     protected pageName: string;
     public isStarFlitBasePage: boolean = false;
+    private NEED_LOGIN_PAGES = [
+        'legal',
+        'login-admin'
+    ];
+    private LOGIN_PAGE = 'login-admin';
 
     constructor(public injector: Injector) {}
 
@@ -32,6 +37,12 @@ export class BasePage {
         this.statusBar.styleDefault();
         this.events.publish(Constants.EVENT['NAVIGATION'], this.pageName);
         this.isStarFlitBasePage = this.localStorageService.get(Constants.EVENT['STAR_FLIT']);
+
+        /*
+            Force Login to visit all pages but NEED_LOGIN_PAGES ones
+        */
+        let app = this.injector.get(AppService);
+        if(!(this.NEED_LOGIN_PAGES.indexOf(this.pageName) >= 0) && !app.isAuth) this.setRootPage(this.LOGIN_PAGE, null);
     }
 
     ionViewWillLeave() {}
