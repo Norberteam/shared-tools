@@ -27,7 +27,7 @@ export class BasePage {
     private NO_NEED_OF_LOGIN_PAGES = [
         'legal',
         'login-admin',
-        'social-redirect'
+        'social-login'
     ];
     private LOGIN_PAGE = 'login-admin';
 
