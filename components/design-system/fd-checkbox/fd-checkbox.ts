@@ -8,6 +8,7 @@ import { AbstractValueAcessor, MakeProvider } from '../abstract-value-acessor';
 })
 export class FlitdeskCheckboxComponent extends AbstractValueAcessor<boolean>  {
   @Input('label') label: string;
+  @Input('html-label') htmlLabel: boolean;
   @Input('checked') checked: boolean;
   @Input('disabled') disabled: boolean;
   @Input('orientation') orientation: string;

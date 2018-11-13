@@ -1,6 +1,11 @@
 .md,
 .ios{
     fd-checkbox {
+
+        .form__control{
+            position: relative;
+        }
+
         ion-item{
             &.item{
                 ion-checkbox{
@@ -42,6 +47,13 @@
         ion-label{
             color: color($colors, text);
             font-size: map-get($fontSizes, sm);
+        }
+
+        .checkbox__custom-label{
+            padding-left: 38px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
         }
     }
 }
