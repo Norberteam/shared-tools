@@ -39,6 +39,8 @@
     }
 }
 
+@include makeIcon(tool, '\e932');
+@include makeIcon(users, '\e933');
 @include makeIcon(heart, '\e931');
 @include makeIcon(arrow-left, '\e930');
 @include makeIcon(arrow-right, '\e92f');
