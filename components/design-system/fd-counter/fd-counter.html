@@ -1,0 +1,18 @@
+<div class="fd__counter" *ngIf="size && time" [ngStyle]="{ 'width': size + 'px', 'height': size + 'px' }">
+  <span class="counter__time" [ngStyle]="{ 'line-height': (size + 4) + 'px' }">{{ displayTime }}</span>
+  <svg class="counter__wheel" [attr.width]="size" [attr.height]="size" preserveAspectRatio="none">
+    <circle class="wheel__background" 
+    [attr.cx]="size / 2" 
+    [attr.cy]="size / 2" 
+    [attr.r]="(size / 2) - 8" 
+    [attr.stroke-width]="size / 10"></circle>
+    
+    <circle #counter class="wheel__main wheel__animation" 
+    [attr.cx]="size / 2" 
+    [attr.cy]="size / 2" 
+    [attr.r]="(size / 2) - 8" 
+    [attr.stroke-width]="(size / 10) + 1" 
+    [attr.stroke-dasharray]="getCircleRadius((size / 2) - 8)" 
+    [attr.stroke-dashoffset]="getCircleRadius((size / 2) - 8)"></circle>
+  </svg>
+</div>

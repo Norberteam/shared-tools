@@ -1,0 +1,36 @@
+fd-counter {
+    .fd__counter{
+        position: relative;
+        
+        .counter__wheel{
+            fill: transparent;
+            transform: scaleX(-1) rotate(-90deg);
+
+            .wheel__main,
+            .wheel__background{
+                fill: none;
+            }
+
+            .wheel__main{
+                @include app-alpha-attribute('stroke', color($colors, fd-grey05), color($colors, clean));
+            }
+
+            .wheel__background{
+                stroke: color($colors, primary);
+            }
+
+            .wheel__animation{
+                transition: all 1s linear;
+            }
+        }
+
+        .counter__time{
+            color: color($colors, text);
+            font-size: map-get($fontSizes, md);
+            font-weight: 600;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+        }
+    }
+}
