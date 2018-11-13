@@ -1,4 +1,4 @@
-<div class="fd__avatar">
+<div class="fd__avatar" (click)="avatarClicked()">
   <div class="avatar__photo" [style.background-image]="sanitizeImage(image)" *ngIf="image"></div>
   <div class="avatar__icon" *ngIf="!image && icon">
     <ion-icon [name]="icon"></ion-icon>
