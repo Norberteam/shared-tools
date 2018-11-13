@@ -58,6 +58,10 @@
             font-weight: 300;
             padding-left: 7px;
 
+            ::placeholder {
+                color:color($colors, fd-grey40);
+            }
+
             .text-input{
                 margin-bottom: 10px;
                 margin-top: 10px;

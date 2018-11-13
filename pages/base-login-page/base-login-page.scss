@@ -1,0 +1,26 @@
+base-login-page {
+    @include app-animations();
+    display: block;
+
+    .logo {
+        margin: 0 auto;
+        text-align: center;
+        width: 220px;
+
+        .logo__naming{
+            animation: $animationDuration fadeUp backwards;
+            animation-delay: 0.2s;
+            bottom: 35px;
+            fill: color($colors, titleGrey);      
+            margin-top: 15px;
+            position: relative;
+            width: 180px;      
+        }
+
+        .icon { 
+            animation: $animationDuration fadeUp forwards;
+            color: color($colors, primary); 
+            font-size: 16.8rem; 
+        }
+    }
+}

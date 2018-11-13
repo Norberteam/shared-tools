@@ -1,3 +1,4 @@
+import { Constants } from './../../src/app/app.constants';
 import { Component, Injector } from '@angular/core';
 import { AlertController, ToastController, ModalController, NavController, NavParams, Platform, Events, ViewController } from 'ionic-angular';
 import { AppLocalStorageService } from '../providers/app-localstorage.service';
@@ -21,12 +22,28 @@ export class BasePage {
     private _events: Events;
     private _statusBar: StatusBar;
     private _viewCtrl: ViewController;
+    protected pageName: string;
+    public isStarFlitBasePage: boolean = false;
+    private NO_NEED_OF_LOGIN_PAGES = [
+        'legal',
+        'login-admin',
+        'social-login'
+    ];
+    private LOGIN_PAGE = 'login-admin';
 
     constructor(public injector: Injector) {}
 
     ionViewWillEnter() {
         this.statusBar.overlaysWebView(false);
         this.statusBar.styleDefault();
+        this.events.publish(Constants.EVENT['NAVIGATION'], this.pageName);
+        this.isStarFlitBasePage = this.localStorageService.get(Constants.EVENT['STAR_FLIT']);
+
+        /*
+            Force Login to visit all pages but NEED_LOGIN_PAGES ones
+        */
+        let app = this.injector.get(AppService);
+        if(!(this.NO_NEED_OF_LOGIN_PAGES.indexOf(this.pageName) >= 0) && !app.isAuth) this.setRootPage(this.LOGIN_PAGE, null);
     }
 
     ionViewWillLeave() {}
@@ -35,6 +52,12 @@ export class BasePage {
 
     openPage(page: string, params: any) {
         this.navCtrl.push(page, params);
+    }
+
+    setRootPage(page: string, params) {
+        if(page == 'users')
+            this.events.publish(Constants.EVENT['NAVIGATION_TEAM_NAME'], params.teamName);
+        this.navCtrl.setRoot(page, params);
     }
 
     // Get methods used to obtain instances from the injector just once

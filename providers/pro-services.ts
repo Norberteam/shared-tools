@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Pro} from '@ionic/pro';
 import Rx from "rxjs/Rx";
@@ -16,7 +15,7 @@ var IonicPro;
 export class ProServicesProvider {
     deployChannel: string = 'Dev';
 
-    constructor(public http: HttpClient) {
+    constructor() {
         console.log('Hello ProServicesProvider Provider');
         this.initIonicPro();
     }
