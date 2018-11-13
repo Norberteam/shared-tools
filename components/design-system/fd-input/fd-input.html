@@ -1,20 +1,23 @@
-<div class="fd__form form__control">
-  <ion-item class="item-label-{{ labelPlacement ? labelPlacement : 'stacked' }}">
-    <ion-label 
-    *ngIf="label"
-    [attr.floating]="labelPlacement && labelPlacement === 'floating' ? true : null"
-    [attr.stacked]="!labelPlacement || labelPlacement && labelPlacement === 'stacked' ? true : null"
-    [attr.fixed]="labelPlacement && labelPlacement === 'fixed' ? true : null">
-      <ion-icon item-left *ngIf="icon" [name]="icon"></ion-icon> {{ label }}
-    </ion-label>
-    <ion-input 
-    [type]="type ? type : 'text'" 
-    [placeholder]="getPlaceholder()" 
-    [value]="value ? value : ''" 
-    (input)="onChange($event)"
-    [disabled]="disabled ? disabled : false"
-    [ngClass]="{ 'input--invalid': (touchValidation) ? control && control.invalid  && control.touched : control && control.invalid && control.dirty, 'input--placeholder': !label, 'input--placeholder-with-icon': icon && isUnicode(icon) && placeholder }"></ion-input>
-  </ion-item>
+<div class="fd__form form__control" [ngClass]="{ 'input--icon-inside-input': iconPlacement === 'input' || !iconPlacement }">
+  <div class="fd__input">
+    <ion-icon *ngIf="icon && iconPlacement === 'input'" [name]="icon" [ngClass]="{ 'icon-inside-input': iconPlacement === 'input' }"></ion-icon>
+    <ion-item class="item-label-{{ labelPlacement ? labelPlacement : 'stacked' }}">
+      <ion-label 
+      *ngIf="label"
+      [attr.floating]="labelPlacement && labelPlacement === 'floating' ? true : null"
+      [attr.stacked]="!labelPlacement || labelPlacement && labelPlacement === 'stacked' ? true : null"
+      [attr.fixed]="labelPlacement && labelPlacement === 'fixed' ? true : null">
+        <ion-icon item-left *ngIf="icon && iconPlacement === 'label'" [name]="icon"></ion-icon> {{ label }}
+      </ion-label>
+      <ion-input 
+      [type]="type ? type : 'text'" 
+      [placeholder]="placeholder ? placeholder : ''" 
+      [value]="value ? value : ''" 
+      (input)="onChange($event)"
+      [disabled]="disabled ? disabled : false"
+      [ngClass]="{ 'input--invalid': (touchValidation) ? control && control.invalid  && control.touched : control && control.invalid && control.dirty, 'input--placeholder': !label, 'input--placeholder-with-icon': icon && iconPlacement === 'input' && placeholder && !label }"></ion-input>
+    </ion-item>
+  </div>
   <div class="form__error" *ngIf="(touchValidation) ? control && control.invalid && control.touched : control && control.invalid && control.dirty">
     <div class="error_container" *ngFor="let err of error">
       <span class="error__message" *ngIf="control.invalid && control.errors[err.type]">{{ err.message }}</span>
