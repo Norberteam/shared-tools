@@ -1,0 +1,22 @@
+fd-signature {
+    .fd__signature{
+        color: color($colors, fd-grey60);
+        font-size: map-get($fontSizes, sm);
+        padding-bottom: 16px;
+        padding-top: 16px;
+        text-align: center;
+        
+        ion-icon{
+            font-size: map-get($fontSizes, lg);
+            margin-left: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+
+            &[name="norbert-heart"]{
+                font-size: map-get($fontSizes, md);
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
+}

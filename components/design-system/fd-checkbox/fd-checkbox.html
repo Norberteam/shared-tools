@@ -1,7 +1,10 @@
-<div class="fd__form form__control">
+<div class="fd__form form__control" [ngClass]="{ 'checkbox--custom-label': htmlLabel }">
   <ion-item [ngClass]="{ 'checkbox--right': orientation && orientation === 'right' }">
-    <ion-label *ngIf="label">{{ label }}</ion-label>
+    <ion-label *ngIf="label && !htmlLabel">{{ label }}</ion-label>
     <ion-checkbox [checked]="checked ? checked : null" [disabled]="disabled ? disabled : null" (ionChange)="toggleCheck()" *ngIf="!orientation || orientation === 'left'"></ion-checkbox>
     <ion-checkbox item-right [checked]="checked ? checked : null" [disabled]="disabled ? disabled : null" (ionChange)="toggleCheck()" *ngIf="orientation && orientation === 'right'"></ion-checkbox>
   </ion-item>
+  <div class="checkbox__custom-label" (click)="checked = !checked" *ngIf="htmlLabel">
+    <ng-content></ng-content>
+  </div>
 </div>

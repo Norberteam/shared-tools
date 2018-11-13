@@ -3,6 +3,10 @@
     fd-input {
         width: 100%;
 
+        .fd__input{
+            position: relative;
+        }
+
         .item-input-has-focus,
         .item-input-has-value{
             .label-ios[floating],
@@ -11,6 +15,15 @@
                 margin-left: 0;
                 margin-bottom: 8px;
             }
+        }
+
+        .icon-inside-input{
+            color: color($colors, text);
+            left: 16px;
+            margin-top: -8px;
+            top: 50%;
+            position: absolute;
+            z-index: 1;
         }
         
         ion-label{
@@ -54,16 +67,21 @@
                 margin-top: 10px;
             }
 
-            &:hover{
-                border-color: color($colors, secondary);
-            }
-
             &.input--invalid{
                 border-color: color($colors, danger);
 
                 &:hover{
                     border-color: darken(color($colors, danger), 15%);
                 }
+            }
+
+            &.input--placeholder{
+                margin-bottom: 8px;
+                margin-top: 8px;
+            }
+
+            &.input--placeholder-with-icon{
+                padding-left: 40px;
             }
         }
 

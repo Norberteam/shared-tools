@@ -1,9 +1,7 @@
-<div class="fd__card" [ngClass]="{ 'card--with-image': image, 'card--with-button': button, 'card--with-chevron': chevron }">
+<div class="fd__card" [ngClass]="{ 'card--with-image': image, 'card--with-button': button, 'card--with-top-image': imagePosition && imagePosition === 'top' }">
   <div class="card__container" (click)="fdCardClick()">
     <ion-icon class="card__chevron" name="norbert-chevron-right" color="primary" *ngIf="chevron"></ion-icon>
-    <div class="card__image" *ngIf="image">
-      <div class="image" [style.background-image]="image"></div>
-    </div>
+    <div class="card__image" [style.background-image]="getImage(image)" [style.height]="getImageSize(imageSize)" *ngIf="image"></div>
     <div class="card__content">
       <ng-content></ng-content>
     </div>

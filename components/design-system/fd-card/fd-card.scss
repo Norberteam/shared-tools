@@ -4,7 +4,8 @@ fd-card {
 
     .fd__card{
         background-color: color($colors, clean);
-        border-radius: 8px;
+        border: 1px solid color($colors, fd-grey10);
+        border-radius: 6px;
         margin-bottom: 16px;
         position: relative;
         transition: background-color .3s;
@@ -17,13 +18,13 @@ fd-card {
         .card__chevron{
             font-size: map-get($fontSizes, md);
             position: absolute;
-            right: 16px;
+            right: $fd-card-padding;
             top: 50%;
             transform: translateY(-50%);
         }
 
         .card__container{
-            padding: 16px;
+            padding: $fd-card-padding;
             position: relative;
         }
 
@@ -53,31 +54,46 @@ fd-card {
                 .card__content{
                     float: left;
                 }
-
+                
                 .card__image{
+                    background-color: color($colors, fd-grey05);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    border-radius: 8px 0 0 8px;                    
                     display: block;
-                    height: $fd-card-height;
-                    position: relative;
+                    height: 100%;
+                    left: 0;
+                    position: absolute;
+                    top: 0;                    
                     width: 32.89%;
-
-                    .image{
-                        background-color: color($colors, secondary);
-                        background-position: center;
-                        background-repeat: no-repeat;
-                        background-size: cover;
-                        border-radius: 8px 0 0 8px;
-                        height: calc(100% + 16px);
-                        left: (($fd-card-padding * 2) * - 1);
-                        position: absolute;
-                        top: ($fd-card-padding * - 1);
-                        width: calc(100% + 16px);
-                    }
                 }
     
                 .card__content{
                     box-sizing: border-box;
-                    padding-left: 16px;
-                    width: 67.11%
+                    padding-left: 36%;
+                    padding-right: 24px;
+                    width: 100%;
+                }
+            }
+
+            &.card--with-top-image{
+                .card__container{
+                    padding-left: 0;
+                    padding-right: 0;
+                    padding-top: 0;
+                }
+
+                .card__image{
+                    border-radius: 6px 6px 0 0;
+                    margin-bottom: $fd-card-padding * 2;
+                    position: relative;
+                    width: 100%;
+                }
+
+                .card__content{
+                    padding-left: $fd-card-padding * 2;
+                    padding-right: $fd-card-padding * 2;
                 }
             }
 
@@ -95,7 +111,7 @@ fd-card {
                 .card__container{
                     padding: 8px 40px 8px 16px;
                 }
-            }
+            }            
         }
     }
 }
