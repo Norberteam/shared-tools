@@ -43,20 +43,21 @@ $sharedColors: (
     black: #000000,
 
     fd-grey: rgb(72,72,72),
-    fd-grey80 : rgba(72,72,72, .8),
-    fd-grey70 : rgba(72,72,72, .7),
-    fd-grey60 : rgba(72,72,72, .6),
-    fd-grey50 : rgba(72,72,72, .5),
-    fd-grey40 : rgba(72,72,72, .4),
-    fd-grey30 : rgba(72,72,72, .3),
-    fd-grey20 : rgba(72,72,72, .2),
-    fd-grey10 : rgba(72,72,72, .1),
-    fd-grey05 : rgba(72,72,72, .05),
+    fd-grey80 : rgba(72,72,72, 0.8),
+    fd-grey70 : rgba(72,72,72, 0.7),
+    fd-grey60 : rgba(72,72,72, 0.6),
+    fd-grey50 : rgba(72,72,72, 0.5),
+    fd-grey40 : rgba(72,72,72, 0.4),
+    fd-grey30 : rgba(72,72,72, 0.3),
+    fd-grey20 : rgba(72,72,72, 0.2),
+    fd-grey10 : rgba(72,72,72, 0.1),
+    fd-grey05 : rgba(72,72,72, 0.05),
 );
 
 $boxShadow: (
   default: 0 5px 10px 0 rgba(color($sharedColors, dark), .1),
   primary: 0 2px 5px 0 rgba(color($sharedColors, primary), .5),
+  light: 0 2.5px 5px 0 color($sharedColors, fd-grey05),
   full: 0 0 10px 0 rgba(color($sharedColors, dark), .1)
 );
 

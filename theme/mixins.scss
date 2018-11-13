@@ -5,6 +5,9 @@
     } @else if $type == "full" {
       box-shadow: map-get($boxShadow, full);
       -webkit-box-shadow: map-get($boxShadow, full);  
+    } @else if $type == "light" {
+        box-shadow: map-get($boxShadow, light);
+        -webkit-box-shadow: map-get($boxShadow, light);  
     } @else if $type == "primary" {
         box-shadow: map-get($boxShadow, primary);
         -webkit-box-shadow: map-get($boxShadow, primary);
@@ -99,4 +102,13 @@
     background: -o-linear-gradient($degree, $from, $to); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient($degree, $from, $to); /* For Firefox 3.6 to 15 */
     background: linear-gradient($degree, $from, $to); /* Standard syntax */
+}
+
+// Given an rgba color, return a hex value, considering opacity and background color. Article used:
+// http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
+@mixin app-alpha-attribute($attribute, $color, $background) {
+    $percent: alpha($color) * 100%;
+    $opaque: opacify($color, 1);
+    $solid-color: mix($opaque, $background, $percent);
+    #{$attribute}: $solid-color;
   }
