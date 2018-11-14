@@ -33,17 +33,27 @@ export class BasePage {
 
     constructor(public injector: Injector) {}
 
+    needsAuth(pageName: string) {
+      if(!pageName) return true;
+      let filtered = this.NO_NEED_OF_LOGIN_PAGES.filter(name => pageName == name);
+      return filtered.length > 0 ? false : true;
+    }
+
+    ionViewCanEnter() { // Auth Guard
+        /*
+            Force Login to visit all pages but NEED_LOGIN_PAGES ones
+        */
+       let app = this.injector.get(AppService);
+       if(this.needsAuth(this.pageName) && !app.isAuth) {
+         this.setRootPage(this.LOGIN_PAGE, null);
+       }
+    }
+
     ionViewWillEnter() {
         this.statusBar.overlaysWebView(false);
         this.statusBar.styleDefault();
         this.events.publish(Constants.EVENT['NAVIGATION'], this.pageName);
         this.isStarFlitBasePage = this.localStorageService.get(Constants.EVENT['STAR_FLIT']);
-
-        /*
-            Force Login to visit all pages but NEED_LOGIN_PAGES ones
-        */
-        let app = this.injector.get(AppService);
-        if(!(this.NO_NEED_OF_LOGIN_PAGES.indexOf(this.pageName) >= 0) && !app.isAuth) this.setRootPage(this.LOGIN_PAGE, null);
     }
 
     ionViewWillLeave() {}
