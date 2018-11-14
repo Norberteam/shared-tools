@@ -39,15 +39,13 @@ export class BasePage {
       return filtered.length > 0 ? false : true;
     }
 
-    ionViewCanEnter() { // Auth Guard
-        /*
-            Force Login to visit all pages but NEED_LOGIN_PAGES ones
-        */
+/*    ionViewCanEnter() { // Auth Guard
+       // Force Login to visit all pages but NEED_LOGIN_PAGES ones
        let app = this.injector.get(AppService);
        if(this.needsAuth(this.pageName) && !app.isAuth) {
          this.setRootPage(this.LOGIN_PAGE, null);
        }
-    }
+}*/
 
     ionViewWillEnter() {
         this.statusBar.overlaysWebView(false);
