@@ -50,10 +50,11 @@
         }
 
         .checkbox__custom-label{
-            padding-left: 38px;
+            right: 0;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+            width: calc(100% - 38px);
         }
     }
 }
