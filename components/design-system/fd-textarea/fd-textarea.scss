@@ -1,0 +1,26 @@
+fd-textarea {
+    width: 100%;
+
+    ion-textarea{
+        background-color: color($colors, fd-grey05);
+        border-radius: 5px;
+        color: color($colors, fd-grey);
+        font-weight: 400;
+        margin-bottom: 16px;
+        min-height: 120px;
+        padding: 16px 8px;  
+        
+        ::placeholder{
+            color: color($colors, fd-grey40);
+        }
+
+        .text-input-ios{
+            font-size: map-get($fontSizes, sm) !important;
+            margin: 0;
+        }
+
+        &:focus{
+            outline: none !important;
+        }
+    }
+}
