@@ -1,4 +1,4 @@
-<div class="fd__card" [ngClass]="{ 'card--with-image': image, 'card--with-button': button, 'card--with-top-image': imagePosition && imagePosition === 'top' }">
+<div class="fd__card" [ngClass]="{ 'card--with-image': image, 'card--with-button': button, 'card--with-top-image': imagePosition && imagePosition === 'top', 'card--with-statusbar': statusbar }">
   <div class="card__container" (click)="fdCardClick()">
     <ion-icon class="card__chevron" name="norbert-chevron-right" color="primary" *ngIf="chevron"></ion-icon>
     <div class="card__image" [style.background-image]="getImage(image)" [style.height]="getImageSize(imageSize)" *ngIf="image"></div>
@@ -6,9 +6,21 @@
       <ng-content></ng-content>
     </div>
   </div>
-  <div class="card__footer" *ngIf="button">
-    <fd-button
-    [label]="label"
+  <div class="card__footer" *ngIf="button || statusbar">
+    <fd-button *ngIf="button"
+    [label]="buttonLabel"
     (onClick)="fdCardButtonClick()"></fd-button>
+    <div class="card__statusbar" *ngIf="statusbar && statusbarOptions">
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let option of statusbarOptions.fields; let i = index">
+            <span class="statusbar__description" [ngClass]="{ 'action--likes': option.type === 'likes', 'action--status': option.type === 'status', 'status--pending': option.status_type === 'PENDING', 'status--in-progress': option.status_type === 'NEED_ACTION', 'status--done': option.status_type === 'DONE' }">
+              <ion-icon name="norbert-thumbs-up" *ngIf="option.type && option.type === 'likes'"></ion-icon>
+              {{ option.count ? option.count : '' }} {{ option.type && option.type === 'likes' ? (option.count && option.count > 1 ? 'people' : 'person' ) : option.title }}
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 </div>
