@@ -203,4 +203,34 @@ export class AppService implements OnInit {
             }
         }
     }
+
+    showPopover(htmlRef) {
+        event.stopPropagation();
+        if(htmlRef.classList.contains('is-active')) {
+          htmlRef.classList.remove('is-active');
+          return; //break here to avoid adding class 'is-active' below
+        } 
+        
+        //Loop in all submenus to disable submenu in htmlRef and add it the clicked one
+        let ElementsOpened = document.querySelectorAll(".submenu");
+        [].forEach.call(ElementsOpened, el => {
+          if (el.classList.contains('is-active')) {
+            el.classList.remove('is-active');
+          }
+        });
+    
+        htmlRef.classList.add('is-active');
+    
+        this.listenClickOutside(htmlRef);
+      }
+
+      listenClickOutside (selector) {
+        document.addEventListener("click", function(event:any) {
+          if (event.target.closest(".submenu")) {return};
+    
+          if (selector.classList.contains("is-active")){
+            selector.classList.remove("is-active");
+          }
+        });
+      }
 }
