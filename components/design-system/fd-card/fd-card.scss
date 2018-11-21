@@ -111,7 +111,92 @@ fd-card {
                 .card__container{
                     padding: 8px 40px 8px 16px;
                 }
-            }            
+            }        
+            
+        }
+
+        &.card--with-statusbar{
+            .card__container{
+                margin-bottom: 32px;
+            }
+            .card__footer{
+                background-color: color($colors, fd-grey05);
+                bottom: 0;
+                left: 0;
+                padding: 4px 8px;
+                position: absolute;
+                width: 100%;
+
+                .card__statusbar{
+                    ion-grid{
+                        padding: 0;
+                    }
+
+                    .statusbar__description{
+                        color: color($colors, text);
+                        display: block;
+                        font-size: map-get($fontSizes, xs);
+                        text-align: center;
+                        
+                        &.action--status{
+                            &.status--pending,
+                            &.status--in-progress,
+                            &.status--done{
+                                &:after{
+                                    border-radius: 100%;
+                                    box-shadow: inset 0 1px 3px 0 color($colors, fd-grey20);
+                                    content: "";
+                                    display: inline-block;
+                                    height: 15px;
+                                    margin-left: 4px;
+                                    vertical-align: middle;
+                                    width: 15px;
+                                }
+                            }
+
+                            &.status--pending{
+                                &:after{
+                                    background-color: color($colors, primary);
+                                }
+                            }
+                            
+                            &.status--in-progress{
+                                &:after{
+                                    background-color: color($colors, warning);
+                                }
+                            }
+                            
+                            &.status--done{
+                                &:after{
+                                    background-color: color($colors, secondary);
+                                }
+                            }
+                        }
+
+                        &.action--likes{
+                            ion-icon{
+                                background-color: color($colors, primary);
+                                border-radius: 100%;
+                                color: color($colors, clean);
+                                font-size: map-get($fontSizes, xs) * .7;
+                                padding: 3px;
+                            }
+                        }
+                    }
+
+                    ion-col:first-child{
+                        .statusbar__description{
+                            text-align: left;
+                        }
+                    }
+
+                    ion-col:last-child{
+                        .statusbar__description{
+                            text-align: right;
+                        }
+                    }
+                }
+            }
         }
     }
 }
