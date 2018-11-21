@@ -203,4 +203,25 @@ export class AppService implements OnInit {
             }
         }
     }
+
+     /**
+     * parse the url format in PROTOCOL + CDNHOST + UID + NAME=OPTIONAL
+     * to have an url format like that https://ucarecdn.com/6b216114-8e99-4ec4-a64e-874959fade2e/-/resize/500x/photo37544750007.jpg
+     * and no like that https://ucarecdn.com/6b216114-8e99-4ec4-a64e-874959fade2e/photo37544750007.jpg/-/resize/500x/ which brock the cdn url
+     * @param url 
+     */
+    parseUrlImg(url) {
+        let parsedUrl = {};
+        let regex = new RegExp('(https?://)([^:^/]*)(.*/)(.*)$'); //split in PROTOCOL + DOMAIN + UID + FILENAME include .jpg, .png & other format are ckecj by the cdn
+        let found = url.match(regex) // return array and [0] = url
+        
+        parsedUrl = { 
+            protocol: found[1],
+            host: found[2],
+            uid: found[3],
+            filename : !(typeof found[4] === 'undefined' ) ? found[4] : ""
+        }
+        
+        return parsedUrl;
+    }        
 }
