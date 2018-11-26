@@ -1,0 +1,133 @@
+fd-select {
+    .fd__select{
+        position: relative;
+        
+        .select__container{
+            position: relative;
+        }
+
+        .select__chevron{
+            font-size: map-get($fontSizes, md);
+            right: 8px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .select__overlay{
+            background-color: transparent;
+            border-radius: 6px;
+            height: calc(100% - 16px);
+            position: absolute;
+            top: 8px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .select__list{
+            border-radius: 0 0 6px 6px;
+            left: 0;
+            margin-top: -8px;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+            @include app-alpha-attribute("background-color", color($colors, fd-grey05), color($colors, clean));
+
+            ion-list{
+                &.list-ios,
+                &.list-md{
+                    .item{
+                        &.item-ios,
+                        &.item-md{
+                            background-color: transparent;
+                            color: color($colors, text);
+                            padding-left: 8px;
+                            
+                            &.item-block{
+                                &:first-child,
+                                &:last-child{
+                                    border: none;
+                                }
+
+                                .item-inner{
+                                    background-image: none;
+                                    border: none;
+                                    padding-right: 8px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.select--active{
+            .fd__input{
+                ion-input{
+                    border-radius: 6px 6px 0 0;
+                }
+            }
+        }
+    }
+}
+
+.select__list-overlay{
+    background-color: color($colors, fd-grey10);
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+.fd__select-list{
+    ion-backdrop{
+        background-color: transparent;
+    }
+
+    &.popover-ios{
+        .popover-arrow{
+            display: none;
+        }
+    
+        .popover-content{
+            border-top: 2px solid color($colors, fd-grey05);
+            border-radius: 0 0 6px 6px;
+            left: initial !important;
+            @include app-alpha-attribute("background-color", color($colors, fd-grey05), color($colors, clean));
+
+            ion-list{
+                &.list-ios{
+                    margin-bottom: 0;
+
+                    .item-block{
+                        background-color: transparent;
+                        color: color($colors, text);
+                        padding-left: 8px;
+
+                        &:first-child,
+                        &:last-child{
+                            border: none;
+                        }
+
+                        .item-inner{
+                            background-image: none;
+                            border: none;
+                            padding-right: 8px;
+                        }
+
+                        &.option--selected{
+                            color: color($colors, primary);
+
+                            ion-icon{
+                                color: color($colors, primary);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
