@@ -1,0 +1,10 @@
+<div class="fd__select fd__form" #container *ngIf="options && options.length > 0" [ngClass]="{ 'select--active': showList }">
+  <div class="select__container" #select>
+    <button class="select__overlay" (click)="openList($event)"></button>
+    <ion-icon class="select__chevron" name="norbert-chevron-bottom" color="primary"></ion-icon>
+    <fd-input
+    [placeholder]="placeholder"
+    [value]="optionActive"
+    [readonly]="true"></fd-input>
+  </div>
+</div>

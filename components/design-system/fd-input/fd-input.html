@@ -15,6 +15,7 @@
       [value]="value ? value : ''" 
       (input)="onChange($event)"
       [disabled]="disabled ? disabled : false"
+      [readonly]="readonly"
       [ngClass]="{ 'input--invalid': (touchValidation) ? control && control.invalid  && control.touched : control && control.invalid && control.dirty, 'input--placeholder': !label, 'input--placeholder-with-icon': icon && iconPlacement === 'input' && placeholder && !label }"></ion-input>
     </ion-item>
   </div>
