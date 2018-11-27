@@ -3,6 +3,10 @@ import { AppLocalStorageService } from './app-localstorage.service';
 import { Injectable } from '@angular/core';
 import { Constants } from '../../src/app/app.constants';
 import { AppService } from './app.service';
+import {Observable} from 'rxjs/Observable';
+import { Platform } from 'ionic-angular';
+import { SafariViewController } from '@ionic-native/safari-view-controller';
+import * as _ from 'lodash';
 
 /*
   Generated class for the AuthServiceProvider provider.
@@ -12,7 +16,12 @@ import { AppService } from './app.service';
 */
 @Injectable()
 export class AuthService {
-  constructor(private appLocalStorageService: AppLocalStorageService, private app: AppService) {
+  constructor(
+    private appLocalStorageService: AppLocalStorageService, 
+    private app: AppService,
+    private platform: Platform,
+    private safariViewController: SafariViewController
+  ) {
     console.log('Hello AuthServiceProvider Provider');
   }
 
@@ -103,14 +112,41 @@ export class AuthService {
    * Destroy database/user data
    * @return
    */
-  logout(isAuth: boolean) {
+  logout(isAuth: boolean, isVisitor?: boolean) {
     const user = this.appLocalStorageService.get(Constants.LS['USER']);
     const accessToken = user ? user.token : "";
     let deepLink = false;
+    let visitorParam = (isVisitor) ? '&app=visitor' : '';
 
     this.removeLocalData();
-    const redirectUrl = `${Constants.API_URL}/auth/logout?deepLink=${deepLink}&access_token=${accessToken}`;
-    this.openUrlInAppWebBrowser(redirectUrl);
+    const redirectUrl = `${Constants.API_URL}/auth/logout?deepLink=${deepLink}&access_token=${accessToken}${visitorParam}`;
+    try {
+      if (this.platform.is('ios')) {
+          this.openUrlSafariController(redirectUrl);
+      } else {
+          this.openUrlInAppWebBrowser(redirectUrl);
+      }
+    } catch (e) {
+        console.log(e);
+    }    
+  }
+
+  openUrlSafariController(url) {
+    Observable.from(this.safariViewController.isAvailable())
+        .flatMap(available => {
+            if (!available) return Observable.throw('SAFARI_VIEW_CONTROLLER_NOT_AVAILABLE');
+            else return this.safariViewController.show({
+                url: url,
+                hidden: false,
+                animated: false,
+                transition: 'curl',
+                enterReaderModeIfAvailable: true,
+                tintColor: '#ff0000'
+            });
+        }).subscribe((result: any) => { }, (err: any) => {
+            console.error('Error trying to open safari view controller: ' + err);
+            this.openUrlInAppWebBrowser(url);
+        });
   }
 
   openUrlInAppWebBrowser(url) {
