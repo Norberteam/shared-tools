@@ -165,7 +165,7 @@ export class AppService implements OnInit {
             'position': 'bottom',
             'showCloseButton': true,
             'dismissOnPageChange': true,
-            'cssClass': 'Coming-soon'
+            'cssClass': 'toast-class'
         };
 
         let toast = this.toastCtrl.create(options);
