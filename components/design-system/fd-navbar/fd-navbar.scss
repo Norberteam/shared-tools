@@ -1,0 +1,74 @@
+.ios{
+    fd-navbar{
+        .fd__navbar{
+            padding-top: 16px;
+        }
+    }
+}
+
+.md{
+    fd-navbar{
+        .fd__navbar{
+            position: relative;
+
+            ion-buttons{
+                position: absolute;
+                
+                &[start]{
+                    left: 8px;
+                }
+
+                &[end]{
+                    right: 8px;
+                }
+
+                .navbar__label{
+                    color: color($colors, primary);
+                    text-transform: none;
+                }
+            }
+
+            ion-title{
+                text-align: center;
+            }
+        }
+    }
+}
+
+fd-navbar {
+    .fd__navbar{
+        ion-title{
+            .toolbar-title{
+                &.toolbar-title-ios,
+                &.toolbar-title-md{
+                    color: color($colors, text);
+                    font-size: map-get($fontSizes, md);
+                }
+            }
+        }
+
+        ion-navbar{
+            &.toolbar{
+                &.toolbar-ios,
+                &.toolbar-md{
+                    padding-left: 8px;
+                    padding-right: 8px;
+                }
+            }
+        }
+
+        &.navbar--with-box-shadow{
+            @include app-box-shadow();
+        }
+
+        .button--with-label{
+            .navbar__label--start{
+                padding-left: 8px;
+            }
+
+            .navbar__label--end{
+                padding-right: 8px;
+            }
+        }
+    }
+}
