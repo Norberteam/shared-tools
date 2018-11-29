@@ -1,0 +1,18 @@
+<div class="fd__navbar" [ngClass]="{ 'navbar--with-box-shadow': boxShadow }">
+    <ion-navbar>
+        <ion-buttons start *ngIf="buttonStart">
+            <button ion-button icon-only (click)="iconStartClick()" [ngClass]="{ 'button--with-label': labelStart }">
+                <ion-icon [name]="iconStart" [color]="iconStartColor ? iconStartColor : 'primary'" *ngIf="iconStart"></ion-icon>
+                <span *ngIf="labelStart" class="navbar__label navbar__label--start">{{ labelStart }}</span>
+            </button>
+        </ion-buttons>
+        <ion-title *ngIf="title">{{ title }}</ion-title>
+        <ion-buttons end *ngIf="buttonEnd">
+                <button ion-button icon-only (click)="iconEndClick()" [ngClass]="{ 'button--with-label': labelEnd }">
+                    <ion-icon [name]="iconEnd" [color]="iconEndColor ? iconEndColor : 'primary'" *ngIf="iconEnd"></ion-icon>
+                    <span *ngIf="labelEnd" class="navbar__label navbar__label--end">{{ labelEnd }}</span>
+                </button>
+            </ion-buttons>
+    </ion-navbar>
+    <ng-content></ng-content>
+</div>
