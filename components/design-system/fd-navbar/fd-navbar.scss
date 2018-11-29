@@ -37,6 +37,8 @@
 
 fd-navbar {
     .fd__navbar{
+        background-color: color($colors, clean);
+        
         ion-title{
             .toolbar-title{
                 &.toolbar-title-ios,
