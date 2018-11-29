@@ -59,3 +59,21 @@
     font-weight: 600;
     text-align: left;
 }
+
+// --------------------------------------------------
+// - Sticky
+
+.fd__sticky{
+    border: none;
+    color: color($colors, text);
+    font-size: map-get($fontSizes, smd);
+    font-weight: 600;
+    min-height: 3rem;
+    padding-bottom: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 4px;
+    position: sticky;
+    top: 0;
+    @include app-alpha-attribute("background-color", color($colors, fd-grey05), color($colors, clean));
+}
