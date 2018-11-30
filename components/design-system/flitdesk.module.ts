@@ -9,6 +9,8 @@ import { FlitdeskAvatarComponent } from './fd-avatar/fd-avatar';
 import { FlitdeskSignatureComponent } from './fd-signature/fd-signature';
 import { FlitdeskCounterComponent } from './fd-counter/fd-counter';
 import { FlitdeskSelectComponent, FlitdeskSelectList } from './fd-select/fd-select';
+import { FlitdeskNavbarComponent } from './fd-navbar/fd-navbar';
+import { FlitdeskStickyDirective } from './fd-sticky/fd-sticky';
 
 @NgModule({
     declarations: [
@@ -21,7 +23,9 @@ import { FlitdeskSelectComponent, FlitdeskSelectList } from './fd-select/fd-sele
         FlitdeskSignatureComponent,
         FlitdeskCounterComponent,
         FlitdeskSelectComponent,
-        FlitdeskSelectList
+        FlitdeskSelectList,
+        FlitdeskNavbarComponent,
+        FlitdeskStickyDirective
     ],
     imports: [
         IonicModule,
@@ -36,7 +40,9 @@ import { FlitdeskSelectComponent, FlitdeskSelectList } from './fd-select/fd-sele
         FlitdeskSignatureComponent,
         FlitdeskCounterComponent,
         FlitdeskSelectComponent,
-        FlitdeskSelectList
+        FlitdeskSelectList,
+        FlitdeskNavbarComponent,
+        FlitdeskStickyDirective
     ]
 })
 export class FlitdeskModule { }
