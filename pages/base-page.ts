@@ -51,7 +51,7 @@ export class BasePage {
         this.statusBar.overlaysWebView(false);
         this.statusBar.styleDefault();
         this.events.publish(Constants.EVENT['NAVIGATION'], this.pageName);
-        this.isStarFlitBasePage = this.localStorageService.get(Constants.EVENT['STAR_FLIT']);
+        this.isStarFlitBasePage = this.localStorageService.get(Constants.LS['STAR_FLIT']);
     }
 
     ionViewWillLeave() {}
