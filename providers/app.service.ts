@@ -2,6 +2,7 @@ import {Injectable, OnInit} from "@angular/core";
 import {Loading, LoadingController, ToastController, Platform} from 'ionic-angular';
 import {Constants} from '../../src/app/app.constants';
 import {AppLocalStorageService} from './app-localstorage.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class AppService implements OnInit {
@@ -17,7 +18,8 @@ export class AppService implements OnInit {
     constructor(private appLocalStorageService: AppLocalStorageService,
                 private loadingCtrl: LoadingController,
                 private toastCtrl: ToastController,
-                private platform: Platform) {
+                private platform: Platform,
+                private sanitizer: DomSanitizer) {
         return AppService.instance = AppService.instance || this;
     }
 
@@ -254,5 +256,26 @@ export class AppService implements OnInit {
         }
         
         return parsedUrl;
-    }        
+    }     
+    
+    /**
+     * Use the resize feature of Uploadcare before displaying the image
+     * @param image 
+     */
+    sanitizeImage(image: any, method?: string){
+        let url = image;
+        let processImg = '-/resize/500x/'
+        let urlParts;
+        
+        try {
+            urlParts = this.parseUrlImg(url);
+            url = urlParts.protocol + urlParts.host + urlParts.uid + processImg + urlParts.filename
+        }catch(err) { }
+
+        if(method === 'style'){
+            return this.sanitizer.bypassSecurityTrustStyle(`url(${image})`);
+        }else{
+            return this.sanitizer.bypassSecurityTrustUrl(`${image}`);
+        }
+    }    
 }

@@ -1,0 +1,3 @@
+<div class="fd__status" [ngClass]="{ 'status--on-the-left': orientation === 'left', 'status--on-the-right': orientation === 'right', 'status--pending': status === 'PENDING', 'status--in-progress': status === 'IN_PROGRESS' || status ===  'NEED_ACTION', 'status--done': status === 'DONE' }">
+  <span class="status__title">{{ title }}</span>
+</div>

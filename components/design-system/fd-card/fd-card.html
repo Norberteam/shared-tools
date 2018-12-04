@@ -14,9 +14,10 @@
       <ion-grid>
         <ion-row>
           <ion-col *ngFor="let option of statusbarOptions.fields; let i = index">
-            <span class="statusbar__description" [ngClass]="{ 'action--likes': option.type === 'likes', 'action--status': option.type === 'status', 'status--pending': option.status_type === 'PENDING', 'status--in-progress': option.status_type === 'NEED_ACTION', 'status--done': option.status_type === 'DONE' }">
+            <span class="statusbar__description" [ngClass]="{ 'action--likes': option.type === 'likes', 'action--status': option.type === 'status' }">
+              <fd-status *ngIf="option.type === 'status'" [title]="option.title" [status]="option.status_type" [orientation]="'right'"></fd-status>
               <ion-icon name="norbert-thumbs-up" *ngIf="option.type && option.type === 'likes'"></ion-icon>
-              {{ option.count ? option.count : '' }} {{ option.type && option.type === 'likes' ? (option.count && option.count > 1 ? 'people' : 'person' ) : option.title }}
+              {{ option.count ? option.count : '' }} {{ option.type && option.type === 'likes' ? (option.count && option.count > 1 ? 'people' : 'person' ) : option.type && option.type === 'status' ? null : option.title }}
             </span>
           </ion-col>
         </ion-row>

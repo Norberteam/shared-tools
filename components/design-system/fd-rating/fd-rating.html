@@ -1,0 +1,5 @@
+<div class="fd__rating" [ngClass]="{ 'rating--disabled': disabled }">
+  <button ion-button icon-only *ngFor="let item of rating;" (click)="rate(item)" class="rating__icon">
+    <ion-icon [name]="item.selected ? (iconFill ? iconFill : 'star') : (iconOutline ? iconOutline : 'star-outline')"></ion-icon>
+  </button>
+</div>

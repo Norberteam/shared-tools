@@ -1,0 +1,28 @@
+fd-rating {
+    .fd__rating{
+        display: table;
+        margin: 0 auto;
+
+        &.rating--disabled{
+            .button{
+                opacity: .8;
+            }
+        }
+
+        .button{
+            &.button-ios,
+            &.button-md{
+                background-color: transparent;
+                border-radius: 6px;
+                box-shadow: none;
+                height: auto;
+
+                ion-icon{
+                    color: color($colors, fd-grey40);
+                    padding-left: 8px;
+                    padding-right: 8px;
+                }
+            }
+        }
+    }
+}

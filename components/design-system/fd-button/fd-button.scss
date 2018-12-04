@@ -36,6 +36,30 @@ fd-button {
             }
         }
 
+        &.button--rounded-secondary{
+            background-color: color($colors, clean);
+            border: 1px solid color($colors, secondary);
+            border-radius: 24px;
+            color: color($colors, secondary);
+
+            &:hover{
+                background-color: darken(color($colors, clean), 5%);
+            }
+        }
+
+        &.button--rounded-primary{
+            background-color: color($colors, primary);
+            border-radius: 24px;
+            color: color($colors, clean);
+        }
+
+        &.button--rounded-default{
+            background-color: color($colors, clean);
+            border: 1px solid color($colors, text);
+            border-radius: 24px;
+            color: color($colors, text);
+        }
+
         &.button-md,
         &.button-md.activated{
             box-shadow: none;
