@@ -1,5 +1,5 @@
 <div class="fd__navbar" [ngClass]="{ 'navbar--with-box-shadow': boxShadow }">
-    <ion-navbar>
+    <ion-navbar *ngIf="title || iconStart || labelStart || iconEnd || labelEnd">
         <ion-buttons start *ngIf="buttonStart">
             <button ion-button icon-only (click)="iconStartClick()" [ngClass]="{ 'button--with-label': labelStart }">
                 <ion-icon [name]="iconStart" [color]="iconStartColor ? iconStartColor : 'primary'" *ngIf="iconStart"></ion-icon>

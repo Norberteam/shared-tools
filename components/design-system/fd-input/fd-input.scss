@@ -17,13 +17,23 @@
             }
         }
 
-        .icon-inside-input{
-            color: color($colors, text);
-            left: 16px;
-            margin-top: -8px;
-            top: 50%;
+        .icon-inside-input,
+        .input__clear{
             position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             z-index: 1;
+        }
+        
+        .icon-inside-input{
+            left: 16px;
+        }
+
+        .input__clear{
+            color: color($colors, text);
+            font-size: map-get($fontSizes, xl);
+            opacity: 0.2;
+            right: 0;
         }
         
         ion-label{
@@ -57,10 +67,6 @@
             font-size: map-get($fontSizes, sm);
             font-weight: 300;
             padding-left: 7px;
-
-            ::placeholder {
-                color:color($colors, fd-grey40);
-            }
 
             .text-input{
                 margin-bottom: 10px;
