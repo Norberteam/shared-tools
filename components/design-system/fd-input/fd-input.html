@@ -1,7 +1,7 @@
-<div class="fd__form form__control" [ngClass]="{ 'input--icon-inside-input': iconPlacement === 'input' || !iconPlacement }">
+<div class="fd__form form__control" [ngClass]="{ 'input--icon-inside-input': iconPlacement === 'input' || !iconPlacement, 'input--can-clear': canClear }">
   <div class="fd__input">
-    <ion-icon *ngIf="icon && iconPlacement === 'input'" [name]="icon" [ngClass]="{ 'icon-inside-input': iconPlacement === 'input' }"></ion-icon>
-    <ion-item class="item-label-{{ labelPlacement ? labelPlacement : 'stacked' }}">
+    <ion-icon *ngIf="icon && iconPlacement === 'input'" [name]="icon" [color]="iconColor ? iconColor : 'text'" [ngClass]="{ 'icon-inside-input': iconPlacement === 'input' }" (click)="onIconClicked()"></ion-icon>
+    <ion-item class="item-label-{{ labelPlacement ? labelPlacement : 'stacked' }}" (click)="onInputClick()">
       <ion-label 
       *ngIf="label"
       [attr.floating]="labelPlacement && labelPlacement === 'floating' ? true : null"
@@ -18,6 +18,7 @@
       [readonly]="readonly"
       [ngClass]="{ 'input--invalid': (touchValidation) ? control && control.invalid  && control.touched : control && control.invalid && control.dirty, 'input--placeholder': !label, 'input--placeholder-with-icon': icon && iconPlacement === 'input' && placeholder && !label }"></ion-input>
     </ion-item>
+    <ion-icon class="input__clear" name="norbert-close-delete" *ngIf="canClear" (click)="onClearClick()"></ion-icon>
   </div>
   <div class="form__error" *ngIf="(touchValidation) ? control && control.invalid && control.touched : control && control.invalid && control.dirty">
     <div class="error_container" *ngFor="let err of error">
