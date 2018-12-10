@@ -43,55 +43,51 @@ export class AuthService {
 
 
   socialLogin(profile: any) {
-    console.log('Social login AuthService: ' + JSON.stringify(profile));
     try {
         var loginInfo = JSON.parse(decodeURI(profile));
-        console.log('SocialLogin: ' + JSON.stringify(loginInfo));
+        if(loginInfo.error) return loginInfo;
+        else {
+          let userId = loginInfo.accessToken.userId;
+          let token = loginInfo.accessToken.id;
 
-        let userId = loginInfo.accessToken.userId;
-        let token = loginInfo.accessToken.id;
+          // Map response to UserProfile object
+          let previousProfile = this.getUserProfile();
+          var userProfile: any;
+          if(!previousProfile) {
+              userProfile = {
+                  token: token,
+                  _id: userId,
+                  provider: loginInfo.profiles[0].profile._json.provider,
+                  email: loginInfo.profiles[0].profile._json.email,
+                  firstName: loginInfo.profiles[0].profile._json.given_name,
+                  lastName: loginInfo.profiles[0].profile._json.family_name,
+                  displayName: loginInfo.profiles[0].profile._json.name,
+                  company: loginInfo.company ? loginInfo.company : null,
+                  jobTitle: loginInfo.jobTitle ? loginInfo.jobTitle : null,
+                  picture: loginInfo.profiles[0].profile._json.picture,
+                  loginProvider: loginInfo.profiles[0].provider
+              }
+          } else {
+              userProfile = {
+                  token: token,
+                  _id: userId,
+                  email: loginInfo.profiles[0].profile._json.email,
+                  provider: loginInfo.profiles[0].profile._json.provider,
+                  firstName: loginInfo.profiles[0].profile._json.given_name,
+                  lastName: loginInfo.profiles[0].profile._json.family_name,
+                  displayName: loginInfo.profiles[0].profile._json.name,
+                  company: previousProfile.company ? previousProfile.company : loginInfo.company,
+                  jobTitle: previousProfile.jobTitle ? previousProfile.jobTitle : loginInfo.jobTitle,
+                  picture: previousProfile.picture ? previousProfile.picture : loginInfo.profiles[0].profile._json.picture,
+                  loginProvider: loginInfo.profiles[0].provider
+              }
+          }
 
-        // Renewing local stored access token
-//        this.remoteService.renewAccessToken(userId, token);
-
-        // Map response to UserProfile object
-        let previousProfile = this.getUserProfile();
-        var userProfile: any;
-        console.log('Login info: ' + loginInfo);
-        console.log('Provider found : ' + loginInfo.profiles[0].profile._json.provider);
-        if(!previousProfile) {
-            userProfile = {
-                token: token,
-                _id: userId,
-                provider: loginInfo.profiles[0].profile._json.provider,
-                email: loginInfo.profiles[0].profile._json.email,
-                firstName: loginInfo.profiles[0].profile._json.given_name,
-                lastName: loginInfo.profiles[0].profile._json.family_name,
-                displayName: loginInfo.profiles[0].profile._json.name,
-                company: loginInfo.company ? loginInfo.company : null,
-                jobTitle: loginInfo.jobTitle ? loginInfo.jobTitle : null,
-                picture: loginInfo.profiles[0].profile._json.picture,
-                loginProvider: loginInfo.profiles[0].provider
-            }
-        } else {
-            userProfile = {
-                token: token,
-                _id: userId,
-                email: loginInfo.profiles[0].profile._json.email,
-                provider: loginInfo.profiles[0].profile._json.provider,
-                firstName: loginInfo.profiles[0].profile._json.given_name,
-                lastName: loginInfo.profiles[0].profile._json.family_name,
-                displayName: loginInfo.profiles[0].profile._json.name,
-                company: previousProfile.company ? previousProfile.company : loginInfo.company,
-                jobTitle: previousProfile.jobTitle ? previousProfile.jobTitle : loginInfo.jobTitle,
-                picture: previousProfile.picture ? previousProfile.picture : loginInfo.profiles[0].profile._json.picture,
-                loginProvider: loginInfo.profiles[0].provider
-            }
+          return this.loginSuccess(userProfile); // Locally store user Profile
         }
-
-        this.loginSuccess(userProfile); // Locally store user Profile
     } catch (e) {
-        console.log('Error initiating tabs: ' + e);
+        console.log('Error parsing response: ' + e);
+        return { error: true };
     }
   }
 
@@ -100,6 +96,7 @@ export class AuthService {
     console.log('Storing user profile: ' + JSON.stringify(profile));
     this.app.showToastMessage('Login success!');
     this.saveUserProfile(profile);
+    return profile;
   }
 
   // Remove credentials and partially local storage
