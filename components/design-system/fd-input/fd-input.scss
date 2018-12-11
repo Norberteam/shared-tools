@@ -30,14 +30,13 @@
         }
 
         .input__clear{
-            color: color($colors, text);
+            color: color($colors, fd-grey20);
             font-size: map-get($fontSizes, xl);
-            opacity: 0.2;
             right: 0;
         }
         
         ion-label{
-            color: color($colors, secondary);
+            color: color($colors, text);
             
             &.label-ios,
             &.label-md{
@@ -56,6 +55,15 @@
                 margin-right: 8px;
                 vertical-align: middle;
             }
+
+            &.label-ios,
+            &.label-md{
+                + ion-input{
+                    .text-input{
+                        margin-left: 0;
+                    }
+                } 
+            }            
         }
 
         ion-input{

@@ -28,7 +28,7 @@ fd-button {
         
         &.fd__button--default{
             background-color: color($colors, clean);
-            border: 1px solid color($colors, text);
+            border: 1px solid color($colors, fd-grey40);
             color: color($colors, text);
 
             &:hover{
@@ -68,6 +68,60 @@ fd-button {
 
         ion-icon{
             margin-right: 8px;
+        }
+
+        &.button--with-provider{
+            .button__provider,
+            .button__label{
+                box-sizing: border-box;
+            }
+
+            .button__provider{
+                padding-bottom: 8px;
+                padding-top: 8px;
+                width: 20%;
+                
+                svg{
+                    max-height: 24px;
+                    padding-top: 2px;
+                }
+            }
+            
+            .button__label{
+                padding-left: 16px;
+                padding-right: 16px;
+                width: 80%;
+            }
+            
+            &.fd__button--default{
+                .button__provider{
+                    border-right: 1px solid color($colors, fd-grey40);
+                }
+            }
+            
+            &.fd__button--primary{
+                .button__provider{
+                    background-color: lighten(color($colors, primary), 16%);
+                    
+                    svg{
+                        path{
+                            fill: color($colors, clean);
+                        }
+                    }
+                }
+            }
+            
+            &.fd__button--secondary{
+                .button__provider{
+                    background-color: lighten(color($colors, secondary), 16%);
+
+                    svg{
+                        path{
+                            fill: color($colors, clean);
+                        }
+                    }
+                }
+            }
         }
     }
 }

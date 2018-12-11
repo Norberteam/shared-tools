@@ -4,6 +4,7 @@ fd-avatar {
         border-radius: 100%;
         box-sizing: border-box;
         height: $profileAvatarSize;
+        margin: 0 auto;
         position: relative;
         text-align: center;
         width: $profileAvatarSize;
@@ -24,6 +25,21 @@ fd-avatar {
             color: color($colors, text);
             font-size: map-get($fontSizes, xl);
             line-height: $profileAvatarSize;
+        }
+
+        &.avatar--with-initial{
+            background-color: color($colors, primary);
+
+            .avatar__initial{
+                .initial{
+                    color: color($colors, clean);
+                    display: block;
+                    font-size: map-get($fontSizes, xl);
+                    line-height: $profileAvatarSize;
+                    padding-top: 4px;
+                    text-align: center;
+                }
+            }
         }
     }
 }
