@@ -1,5 +1,5 @@
-import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
-import { App, ViewController, PopoverController, NavParams } from 'ionic-angular';
+import { Component, Input, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
+import { App, ViewController, PopoverController, NavParams, Platform } from 'ionic-angular';
 import { AbstractValueAcessor, MakeProvider } from '../abstract-value-acessor';
 
 @Component({
@@ -12,11 +12,19 @@ export class FlitdeskSelectComponent extends AbstractValueAcessor<string>  {
   @Input('options') options: string[];
   @Input('label') label: string;
   @Input('placeholder') placeholder: string;
+  @Input('list-width') listWidth: number;
+  @Input('list-height') listHeight: number;
+  @Output('onSelect') onSelect: EventEmitter<any> = new EventEmitter();
 
   public showList: boolean = false;
   public optionActive: string;
+  private defaultListHeight: number = 160;
 
-  constructor(private app: App, private popoverCtrl: PopoverController) {
+  constructor(
+    private app: App, 
+    private popoverCtrl: PopoverController,
+    private platform: Platform
+  ) {
     super();
   }
 
@@ -40,10 +48,13 @@ export class FlitdeskSelectComponent extends AbstractValueAcessor<string>  {
         let selectBounding = this.select.nativeElement.getBoundingClientRect();
         let screenSize = this.app._appRoot._elementRef.nativeElement.offsetWidth;
         let selectRight = screenSize - selectBounding.right;
-  
+        let marginTop = this.select.nativeElement.querySelector('.select__overlay').offsetHeight;
+
         if(popover && selectBounding){
-          popover.querySelector('.popover-content').style.width = `${selectBounding.width}px`;
+          popover.querySelector('.popover-content').style.width = `${ this.listWidth ? this.listWidth : selectBounding.width }px`;
           popover.querySelector('.popover-content').style.right = `${selectRight}px`;     
+          popover.querySelector('.popover-content').style.maxHeight = `${ this.listHeight ? this.listHeight : this.defaultListHeight }px`;
+          if(this.platform.is('android') && marginTop) popover.querySelector('.popover-content').style.marginTop = `${ marginTop }px`;
         }
       }else{
         this.showList = false;
@@ -53,7 +64,10 @@ export class FlitdeskSelectComponent extends AbstractValueAcessor<string>  {
     //Subscription after an option was selected.
     //Usign the selected value to fill the `fd-input` and store it for the next time the `fd-select-list` is opened.
     selectedEmitter.subscribe(emit => {
-      if(emit) this.optionActive = emit;
+      if(emit) {
+          this.optionActive = emit;
+          this.onSelect.emit({ selected: emit });
+      }
     });
   }
 }
