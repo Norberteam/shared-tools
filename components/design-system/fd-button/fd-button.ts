@@ -16,7 +16,7 @@ export class FlitdeskButtonComponent {
   constructor() {}
 
   fdButtonClick(){
-    this.onClick.emit(null);
+    if(!this.disabled) this.onClick.emit(null);
   }
 
 }
