@@ -12,6 +12,7 @@ export class AppService implements OnInit {
     public isPushwooshOn: boolean = false; // if user is authenticated
     public isTrackingOn: boolean = false; // if user is authenticated
     public translation; // all translations
+    public locale; // default locale to be used for translation of issues and issue categories
     private loading: Loading; // loader
     public mainTabRef: any;
 
