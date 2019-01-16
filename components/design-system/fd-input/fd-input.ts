@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { TextInput } from 'ionic-angular';
 import { AbstractValueAcessor, MakeProvider } from '../abstract-value-acessor';
 
 @Component({
@@ -7,6 +8,7 @@ import { AbstractValueAcessor, MakeProvider } from '../abstract-value-acessor';
   providers: [ MakeProvider(FlitdeskInputComponent) ]
 })
 export class FlitdeskInputComponent extends AbstractValueAcessor<string> {
+  @ViewChild('fdInput') fdInput: TextInput;
   @Input('label') label: string;
   @Input('placeholder') placeholder: string;
   @Input('label-placement') labelPlacement: string;
@@ -46,6 +48,10 @@ export class FlitdeskInputComponent extends AbstractValueAcessor<string> {
     }else{
       return '';
     }
+  }
+
+  blur(){
+    this.fdInput.setBlur();
   }
 
   onClearClick(){

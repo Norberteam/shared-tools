@@ -10,13 +10,15 @@
         <ion-icon item-left *ngIf="icon && iconPlacement === 'label'" [name]="icon"></ion-icon> {{ label }}
       </ion-label>
       <ion-input 
+      #fdInput
       [type]="type ? type : 'text'" 
       [placeholder]="placeholder ? placeholder : ''" 
       [value]="value ? value : ''" 
       (input)="onChange($event)"
       [disabled]="disabled ? disabled : false"
       [readonly]="readonly"
-      [ngClass]="{ 'input--invalid': (touchValidation) ? control && control.invalid  && control.touched : control && control.invalid && control.dirty, 'input--placeholder': !label, 'input--placeholder-with-icon': icon && iconPlacement === 'input' && placeholder && !label }"></ion-input>
+      [ngClass]="{ 'input--invalid': (touchValidation) ? control && control.invalid  && control.touched : control && control.invalid && control.dirty, 'input--placeholder': !label, 'input--placeholder-with-icon': icon && iconPlacement === 'input' && placeholder && !label }"
+      (ionFocus)="readonly ? blur($event) : null"></ion-input>
     </ion-item>
     <ion-icon class="input__clear" name="norbert-close-delete" *ngIf="canClear" (click)="onClearClick()"></ion-icon>
   </div>
