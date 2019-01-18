@@ -9,7 +9,6 @@ fd-card {
         margin-bottom: 16px;
         position: relative;
         transition: background-color .3s;
-        @include app-box-shadow();
 
         &:hover{
             background-color: lighten(color($colors, fd-grey10), 35%);
@@ -197,6 +196,10 @@ fd-card {
                     }
                 }
             }
+        }
+
+        &.card--with-shadow{
+            @include app-box-shadow();
         }
     }
 }
