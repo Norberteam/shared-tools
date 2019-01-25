@@ -13,13 +13,18 @@ export class FlitdeskCheckboxComponent extends AbstractValueAcessor<boolean>  {
   @Input('disabled') disabled: boolean;
   @Input('orientation') orientation: string;
   @Output('onChecked') onChecked: EventEmitter<null> = new EventEmitter();
+  @Output('onUnchecked') onUnchecked: EventEmitter<null> = new EventEmitter();
 
   constructor() {
     super();
   }
   
-  toggleCheck(){
-    this.onChecked.emit(null);
+  toggleCheck(event){
+    if(event.value){
+      this.onChecked.emit(null);
+    }else{
+      this.onUnchecked.emit(null);
+    }
   }
 
 }
