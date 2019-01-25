@@ -20,10 +20,10 @@ export class FlitdeskCheckboxComponent extends AbstractValueAcessor<boolean>  {
   }
   
   toggleCheck(event){
-    if(event.value){
-      this.onChecked.emit(null);
-    }else{
+    if(event && event.value === false){
       this.onUnchecked.emit(null);
+    }else{
+      this.onChecked.emit(null);
     }
   }
 
