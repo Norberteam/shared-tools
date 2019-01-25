@@ -14,6 +14,7 @@ export class FlitdeskCardComponent {
   @Input('button-label') buttonLabel: string;
   @Input('statusbar') statusbar: boolean;
   @Input('statusbar-options') statusbarOptions: FlitDeskCardStatusbarOptions;
+  @Input('shadow') shadow: boolean = true;
   @Output('onClick') onClick: EventEmitter<null> = new EventEmitter();
   @Output('buttonClick') buttonClick: EventEmitter<null> = new EventEmitter();
 
