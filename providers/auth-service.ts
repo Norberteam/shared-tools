@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import {Observable} from 'rxjs/Observable';
 import { Platform } from 'ionic-angular';
 import { SafariViewController } from '@ionic-native/safari-view-controller';
+import { JwtService } from './jwt/jwt-service';
 import * as _ from 'lodash';
 
 /*
@@ -20,7 +21,8 @@ export class AuthService {
     private appLocalStorageService: AppLocalStorageService, 
     private app: AppService,
     private platform: Platform,
-    private safariViewController: SafariViewController
+    private safariViewController: SafariViewController,
+    private jwtService: JwtService
   ) {
     console.log('Hello AuthServiceProvider Provider');
   }
@@ -42,53 +44,9 @@ export class AuthService {
   }
 
 
-  socialLogin(profile: any) {
-    try {
-        var loginInfo = JSON.parse(decodeURI(profile));
-        if(loginInfo.error) return loginInfo;
-        else {
-          let userId = loginInfo.accessToken.userId;
-          let token = loginInfo.accessToken.id;
-
-          // Map response to UserProfile object
-          let previousProfile = this.getUserProfile();
-          var userProfile: any;
-          if(!previousProfile) {
-              userProfile = {
-                  token: token,
-                  _id: userId,
-                  provider: loginInfo.profiles[0].profile._json.provider,
-                  email: loginInfo.profiles[0].profile._json.email,
-                  firstName: loginInfo.profiles[0].profile._json.given_name,
-                  lastName: loginInfo.profiles[0].profile._json.family_name,
-                  displayName: loginInfo.profiles[0].profile._json.name,
-                  company: loginInfo.company ? loginInfo.company : null,
-                  jobTitle: loginInfo.jobTitle ? loginInfo.jobTitle : null,
-                  picture: loginInfo.profiles[0].profile._json.picture,
-                  loginProvider: loginInfo.profiles[0].provider
-              }
-          } else {
-              userProfile = {
-                  token: token,
-                  _id: userId,
-                  email: loginInfo.profiles[0].profile._json.email,
-                  provider: loginInfo.profiles[0].profile._json.provider,
-                  firstName: loginInfo.profiles[0].profile._json.given_name,
-                  lastName: loginInfo.profiles[0].profile._json.family_name,
-                  displayName: loginInfo.profiles[0].profile._json.name,
-                  company: previousProfile.company ? previousProfile.company : loginInfo.company,
-                  jobTitle: previousProfile.jobTitle ? previousProfile.jobTitle : loginInfo.jobTitle,
-                  picture: previousProfile.picture ? previousProfile.picture : loginInfo.profiles[0].profile._json.picture,
-                  loginProvider: loginInfo.profiles[0].provider
-              }
-          }
-
-          return this.loginSuccess(userProfile); // Locally store user Profile
-        }
-    } catch (e) {
-        console.log('Error parsing response: ' + e);
-        return { error: true };
-    }
+  socialLogin(jwtToken: string) {
+    const decoded : any = this.jwtService.decode(jwtToken);
+    this.loginSuccess(decoded.payload); // Locally store user Profile
   }
 
   loginSuccess(profile: any) {
@@ -96,7 +54,7 @@ export class AuthService {
     console.log('Storing user profile: ' + JSON.stringify(profile));
     this.app.showToastMessage('Login success!');
     this.saveUserProfile(profile);
-    return profile;
+    return profile.token;
   }
 
   // Remove credentials and partially local storage
