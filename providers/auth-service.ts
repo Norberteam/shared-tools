@@ -46,7 +46,7 @@ export class AuthService {
 
   socialLogin(jwtToken: string) {
     const decoded : any = this.jwtService.decode(jwtToken);
-    this.loginSuccess(decoded.payload); // Locally store user Profile
+    return this.loginSuccess(decoded.payload); // Locally store user Profile
   }
 
   loginSuccess(profile: any) {
