@@ -13,6 +13,9 @@ import { FlitdeskNavbarComponent } from './fd-navbar/fd-navbar';
 import { FlitdeskStickyDirective } from './fd-sticky/fd-sticky';
 import { FlitdeskRatingComponent } from './fd-rating/fd-rating';
 import { FlitdeskStatusComponent } from './fd-status/fd-status';
+import { FlitdeskChatComponent } from './fd-chat/fd-chat';
+import { FlitdeskChatBubbleComponent } from './fd-chat-bubble/fd-chat-bubble';
+import { FlitdeskChatInputComponent } from './fd-chat-input/fd-chat-input';
 
 @NgModule({
     declarations: [
@@ -29,7 +32,10 @@ import { FlitdeskStatusComponent } from './fd-status/fd-status';
         FlitdeskNavbarComponent,
         FlitdeskStickyDirective,
         FlitdeskRatingComponent,
-        FlitdeskStatusComponent
+        FlitdeskStatusComponent,
+        FlitdeskChatComponent,
+        FlitdeskChatBubbleComponent,
+        FlitdeskChatInputComponent
     ],
     imports: [
         IonicModule,
@@ -51,7 +57,10 @@ import { FlitdeskStatusComponent } from './fd-status/fd-status';
         FlitdeskNavbarComponent,
         FlitdeskStickyDirective,
         FlitdeskRatingComponent,
-        FlitdeskStatusComponent
+        FlitdeskStatusComponent,
+        FlitdeskChatComponent,
+        FlitdeskChatBubbleComponent,
+        FlitdeskChatInputComponent
     ]
 })
 export class FlitdeskModule { }
