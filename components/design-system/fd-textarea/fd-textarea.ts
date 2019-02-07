@@ -9,6 +9,8 @@ import { AbstractValueAcessor, MakeProvider } from '../abstract-value-acessor';
 export class FlitdeskTextareaComponent extends AbstractValueAcessor<string> {
   @Input('placeholder') placeholder: string;
   @Input('rows') rows: number;
+  @Input('control') control: any;
+  @Input('error') error: any;
 
   constructor() {
     super();
