@@ -1,5 +1,11 @@
 <div class="fd__form form__control fd__textarea">
   <ion-textarea
   [placeholder]="placeholder ? placeholder : ''"
-  [attr.rows]="rows ? rows : 6"></ion-textarea>
+  [attr.rows]="rows ? rows : 6"
+  [ngClass]="{ 'textarea--invalid': control && control.invalid && control.dirty }"></ion-textarea>
+  <div class="form__error" *ngIf="control && control.invalid && control.dirty">
+    <div class="error_container" *ngFor="let err of error">
+      <span class="error__message" *ngIf="control.invalid && control.errors[err.type]">{{ err.message }}</span>
+    </div>    
+  </div>
 </div>

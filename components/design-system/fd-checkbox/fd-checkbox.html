@@ -2,7 +2,7 @@
   <ion-item [ngClass]="{ 'checkbox--right': orientation && orientation === 'right' }">
     <ion-label *ngIf="label && !htmlLabel">{{ label }}</ion-label>
     <ion-checkbox [checked]="checked ? checked : null" [disabled]="disabled ? disabled : null" (ionChange)="toggleCheck()" *ngIf="!orientation || orientation === 'left'"></ion-checkbox>
-    <ion-checkbox item-right [checked]="checked ? checked : null" [disabled]="disabled ? disabled : null" (ionChange)="toggleCheck()" *ngIf="orientation && orientation === 'right'"></ion-checkbox>
+    <ion-checkbox item-right [checked]="checked ? checked : null" [disabled]="disabled ? disabled : null" (ionChange)="toggleCheck($event)" *ngIf="orientation && orientation === 'right'"></ion-checkbox>
   </ion-item>
   <div class="checkbox__custom-label" *ngIf="htmlLabel">
     <ng-content></ng-content>
