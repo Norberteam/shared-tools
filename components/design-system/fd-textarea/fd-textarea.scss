@@ -3,6 +3,7 @@ fd-textarea {
 
     ion-textarea{
         background-color: color($colors, fd-grey05);
+        border: 1px solid transparent;
         border-radius: 5px;
         color: color($colors, fd-grey);
         font-weight: 400;
@@ -22,5 +23,24 @@ fd-textarea {
         &:focus{
             outline: none !important;
         }
+
+        &.textarea--invalid{
+            border-color: color($colors, danger);
+
+            &:hover{
+                border-color: darken(color($colors, danger), 15%);
+            }
+        }        
     }
+
+    .form__error{
+        animation: 1s alertAnim forwards;
+        margin-top: 16px;
+
+        .error__message{
+            color: color($colors, danger);
+            font-size: map-get($fontSizes, xs);
+            font-weight: 300;
+        }
+    }    
 }
