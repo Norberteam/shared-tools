@@ -1,0 +1,109 @@
+.fd__chat-input{
+    width: 100%;
+    
+    &:after{
+        clear: both;
+        content: "";
+        display: table;
+    }
+    
+    &.chat-input--fixed{
+        background-color: color($colors, clean);
+        bottom: 0;
+        left: 0;
+        padding-bottom: 24px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 16px;
+        position: absolute;
+    }
+
+    &.chat-input--with-options{
+        .chat-input__options{
+            float: left;
+            padding-bottom: 2px;
+            padding-top: 2px;
+            width: 56px;
+    
+            .options__button{
+                height: 40px;
+                width: 40px;
+    
+                ion-icon{
+                    font-size: map-get($fontSizes, xxl)
+                }
+            }
+        }
+    
+        .chat-input__form{
+            left: 72px;
+            bottom: 24px;
+            position: absolute;
+            width: calc(100% - 88px);
+        }
+
+        &:not(.chat-input--fixed){
+            position: relative;
+
+            .chat-input__options{
+                bottom: 0;
+                left: 0;
+                position: absolute;
+            }
+
+            .chat-input__form{
+                bottom: auto;
+                left: 56px;
+                width: calc(100% - 56px);
+            }
+        }
+    }
+
+    .form__input{
+        background-color: color($colors, fd-grey05);
+        border-radius: 5px;
+        color: color($colors, fd-grey);
+        font-weight: 400;
+        padding: 0;
+        padding-top: 8px;
+        position: relative;
+
+        &:after{
+            clear: both;
+            content: "";
+            display: table;
+        }
+        
+        textarea{
+            background-color: transparent;
+            border: 0;
+            max-height: 56px;
+            min-height: 26px;
+            overflow: auto;
+            padding-bottom: 8px;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-top: 6px;
+            resize: none;
+            width: calc(100% - 80px);
+
+            &:focus{
+                outline: none !important;
+            }
+            
+            ::placeholder{
+                color: color($colors, fd-grey40);
+            }            
+        }        
+
+        .textarea__button{
+            bottom: 12px;
+            position: absolute;
+            right: 8px;
+
+            .fd__button{
+                width: 72px;
+            }
+        }        
+    }
+}

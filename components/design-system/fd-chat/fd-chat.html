@@ -1,0 +1,8 @@
+<div class="fd__chat">
+  <div class="chat__container">
+    <div class="chat__message" *ngFor="let bubble of messageList">
+      <fd-chat-bubble [message]="bubble.text"></fd-chat-bubble>
+    </div>
+  </div>
+  <fd-chat-input [options]="true" (onSend)="addMessage($event)"></fd-chat-input>
+</div>

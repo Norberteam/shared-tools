@@ -1,0 +1,12 @@
+.fd__chat-bubble{
+    .bubble__message{
+        background-color: color($colors, primary);
+        border-radius: 24px;
+        color: color($colors, clean);
+        display: inline-block;
+        font-size: map-get($fontSizes, sm);
+        margin-bottom: 8px;
+        padding: 8px 16px;
+        white-space: pre-line;
+    }
+}
