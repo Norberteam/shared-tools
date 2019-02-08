@@ -11,6 +11,7 @@ export class FlitdeskButtonComponent {
   @Input('style') style: string;
   @Input('provider') provider: string;
   @Input('disabled') disabled: boolean;
+  @Input('full') full: boolean = true;
   @Output('onClick') onClick: EventEmitter<any> = new EventEmitter();
 
   constructor() {}

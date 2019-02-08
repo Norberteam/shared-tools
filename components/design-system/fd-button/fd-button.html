@@ -1,7 +1,7 @@
-<button ion-button full 
-*ngIf="label" 
+<button ion-button [full]="style !== 'chip' && style !== 'chip--active' && style !== 'clear' || full"  [clear]="style === 'clear'"
+*ngIf="label || icon" 
 class="fd__form fd__button" 
-[ngClass]="{ 'fd__button--primary': style && style === 'primary' || !style, 'fd__button--secondary': style && style === 'secondary', 'fd__button--default': style && style === 'default', 'button--rouded-primary': style && style === 'rounded-primary', 'button--rounded-default': style && style === 'rounded-default', 'button--rounded-secondary': style && style === 'rounded-secondary', 'button--with-provider': provider }" 
+[ngClass]="{ 'fd__button--primary': style && style === 'primary' || !style, 'fd__button--secondary': style && style === 'secondary', 'fd__button--default': style && style === 'default', 'button--rouded-primary': style && style === 'rounded-primary', 'button--rounded-default': style && style === 'rounded-default', 'button--rounded-secondary': style && style === 'rounded-secondary', 'button--with-provider': provider, 'button--chip': style && style === 'chip', 'button--chip-active': style && style === 'chip--active', 'button--clear': style && style === 'clear' }" 
 [type]="type ? type : 'button'" 
 [disabled]="disabled ? disabled : null"
 (click)="fdButtonClick()">
