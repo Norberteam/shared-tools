@@ -123,5 +123,36 @@ fd-button {
                 }
             }
         }
+
+        &.button--chip,
+        &.button--chip-active{
+            border: 1px solid;
+            color: color($colors, text);
+            height: auto;
+            margin: 8px;           
+            padding-bottom: 8px;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 8px;
+        }
+
+        &.button--chip{
+            @include app-alpha-attribute("border-color", color($colors, fd-grey05), color($colors, clean));
+            @include app-alpha-attribute("background-color", color($colors, fd-grey05), color($colors, clean));
+        }
+
+        &.button--chip-active,
+        &.button--chip-active:hover{
+            background-color: color($colors, clean);
+            border-color: color($colors, primary);
+        }
+
+        &.button--clear{
+            font-size: map-get($fontSizes, xs);
+            font-weight: 300;
+            max-height: 24px;
+            margin: 0;
+            padding: 0;
+        }
     }
 }
