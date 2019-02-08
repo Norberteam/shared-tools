@@ -148,6 +148,7 @@ fd-button {
         }
 
         &.button--clear{
+            color: color($colors, primary);
             font-size: map-get($fontSizes, xs);
             font-weight: 300;
             max-height: 24px;

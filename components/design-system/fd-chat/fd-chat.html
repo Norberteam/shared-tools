@@ -4,5 +4,5 @@
       <fd-chat-bubble [message]="bubble.text"></fd-chat-bubble>
     </div>
   </div>
-  <fd-chat-input [options]="true" [button-label]="sendButton" (onSend)="addMessage($event)"></fd-chat-input>
+  <fd-chat-input [placeholder]="inputPlaceholder" [options]="inputOptions" [button-label]="sendButton" (onSend)="addMessage($event)"></fd-chat-input>
 </div>
