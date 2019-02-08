@@ -196,6 +196,6 @@ export class BasePage {
     public dismiss(error: Boolean) {
         setTimeout(() => this.viewCtrl.dismiss({
             error: error
-        }), 500);
+        }).catch(() => {}), 500);
     }
 }

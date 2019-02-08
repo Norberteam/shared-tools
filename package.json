@@ -1,6 +1,7 @@
 {
   "name": "SharedTools",
   "private": true,
+  "version": "1.0.0",
   "dependencies": {
     "@ionic-native/barcode-scanner": "4.5.2",
     "@ionic-native/qr-scanner": "4.5.2",
