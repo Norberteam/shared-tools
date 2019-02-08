@@ -7,6 +7,9 @@ import { Component, Input } from '@angular/core';
 export class FlitdeskChatComponent {
   public messageList: any = [];
   @Input('messages') messages: any;
+  @Input('send-button') sendButton: string;
+  @Input('input-options') inputOptions: boolean;
+  @Input('input-placeholder') inputPlaceholder: string;
   constructor() {}
 
   ngOnInit(){
