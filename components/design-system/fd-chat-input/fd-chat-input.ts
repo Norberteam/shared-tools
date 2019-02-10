@@ -18,11 +18,11 @@ export class FlitdeskChatInputComponent {
 
   ngOnInit(){
     //Dealing with the scroll and fixed-content when the keyboard is open
-    let scrollContent = this.input.nativeElement.closest('.scroll-content');
-    let fixedContent = scrollContent ? scrollContent.parentElement.querySelector('.fixed-content') : null;
-    let inputHeight = this.input.nativeElement.offsetHeight;
-    if(fixedContent && inputHeight) fixedContent.style.marginBottom = `${inputHeight}px`;
-    if(scrollContent && inputHeight) scrollContent.style.paddingBottom = `${inputHeight}px`;
+    // let scrollContent = this.input.nativeElement.closest('.scroll-content');
+    // let fixedContent = scrollContent ? scrollContent.parentElement.querySelector('.fixed-content') : null;
+    // let inputHeight = this.input.nativeElement.offsetHeight;
+    // if(fixedContent && inputHeight) fixedContent.style.marginBottom = `${inputHeight}px`;
+    // if(scrollContent && inputHeight) scrollContent.style.paddingBottom = `${inputHeight}px`;
   }
 
   /**
@@ -30,7 +30,7 @@ export class FlitdeskChatInputComponent {
    * @param event the keyup event value
    */
   handleKeyEvent(event){
-    if(event.target.value) this.showButton = true;
+    if(event.target.value && event.target.value.replace(/\s/g, '').length > 0) this.showButton = true;
     else this.showButton = false;
 
     if(event.target.scrollHeight > (event.target.offsetHeight * this.rowControl)){

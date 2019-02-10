@@ -1,8 +1,21 @@
-<div class="fd__chat">
-  <div class="chat__container">
-    <div class="chat__message" *ngFor="let bubble of messageList">
-      <fd-chat-bubble [message]="bubble.text"></fd-chat-bubble>
+<div class="fd__chat" #chat>
+  <ion-scroll #content scrollY="true">
+    <div class="chat__header">
+      <ng-content select="[chat-header]"></ng-content>
     </div>
-  </div>
+    <div class="chat__container">
+      <div class="chat__day" *ngFor="let day of messageList">
+        <div class="chat__hour" *ngFor="let hour of day.hours">
+          <span class="day__title">{{ hour.hour | date: 'EEEE dd MMM HH:mm' }}</span>
+          <div class="chat__message" #messageBubbles *ngFor="let bubble of hour.messages">
+            <fd-chat-bubble [message]="bubble.text" [admin]="bubble && bubble.type && bubble.type === 'TASK.MESSAGE.FROM_ADMIN' ? true : false" [user-name]="bubble.user && bubble.user.name ? bubble.user.name : null" [user-picture]="bubble.user && bubble.user.picture ? bubble.user.picture : null"></fd-chat-bubble>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat__footer">
+      <ng-content select="[chat-footer]"></ng-content>
+    </div>
+  </ion-scroll>
   <fd-chat-input [placeholder]="inputPlaceholder" [options]="inputOptions" [button-label]="sendButton" (onSend)="addMessage($event)"></fd-chat-input>
 </div>
