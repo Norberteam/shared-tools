@@ -1,12 +1,44 @@
 .fd__chat-bubble{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+
     .bubble__message{
         background-color: color($colors, primary);
         border-radius: 24px;
         color: color($colors, clean);
         display: inline-block;
-        font-size: map-get($fontSizes, sm);
-        margin-bottom: 8px;
+        font-size: map-get($fontSizes, xs);
+        max-width: 80%;
         padding: 8px 16px;
-        white-space: pre-line;
+        text-align: right;
+
+        blockquote{
+            font-family: $font-family-base;
+            margin: 0;
+            white-space: pre-line;
+        }
+    }
+
+    &.bubble--admin{
+        justify-content: flex-start;
+
+        .bubble__message{
+            background-color: color($colors, clean);
+            border: 1px solid color($colors, fd-grey10);
+            color: color($colors, text);
+            order: -1;
+            text-align: left;
+            @include app-box-shadow();
+        }
+
+        &.bubble--with-avatar{
+            .bubble__user{
+                left: 0;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
     }
 }

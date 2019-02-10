@@ -1,8 +1,8 @@
-<div class="fd__chat-bubble" *ngIf="message" [ngClass]="{ 'bubble--admin': admin }">
-  <!-- <div class="bubble__user ">
-    <fd-avatar [size]="40" [initial]="userName ? userName : null" [image]="userPicture ? userPicture : null"></fd-avatar>
-  </div> -->
-  <div class="bubble__message">
-    <span class="message">{{ message }}</span>
+<div class="fd__chat-bubble" *ngIf="message" [ngClass]="{ 'bubble--admin': admin, 'bubble--with-avatar': userName || userPicture }">
+  <div class="bubble__user" *ngIf="userName || userPicture">
+    <fd-avatar [size]="avatarSize" [initial]="userName ? userName : null" [image]="userPicture ? userPicture : null"></fd-avatar>
+  </div>
+  <div class="bubble__message" [ngStyle]="{ 'margin-left': userName || userPicture ? (avatarSize + 8) + 'px' : 0 }">
+    <blockquote class="message">{{ message }}</blockquote>
   </div>
 </div>
