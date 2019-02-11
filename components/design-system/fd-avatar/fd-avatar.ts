@@ -9,6 +9,7 @@ export class FlitdeskAvatarComponent {
   @Input('image') image: string;
   @Input('icon') icon: string;
   @Input('initial') initial: string;
+  @Input('size') size: number;
   @Output('onClick') onClick: EventEmitter<any> = new EventEmitter(); 
 
   public showContent: boolean = false;
