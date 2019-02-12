@@ -8,8 +8,8 @@ export class FlitdeskChatBubbleComponent {
   @Input('message') message: string;
   @Input('user-picture') userPicture: string;
   @Input('user-name') userName: string;
-  @Input('admin') admin: boolean = false;
-  public avatarSize: number = 40;
+  @Input('sender') sender: boolean = false;
+  public avatarSize: number = 32;
   
   constructor() {}
 

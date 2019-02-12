@@ -15,12 +15,13 @@
 
         blockquote{
             font-family: $font-family-base;
+            line-height: 1.4em;
             margin: 0;
             white-space: pre-line;
         }
     }
 
-    &.bubble--admin{
+    &.bubble--sender{
         justify-content: flex-start;
 
         .bubble__message{

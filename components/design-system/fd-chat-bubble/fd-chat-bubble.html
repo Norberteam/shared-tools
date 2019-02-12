@@ -1,5 +1,5 @@
-<div class="fd__chat-bubble" *ngIf="message" [ngClass]="{ 'bubble--admin': admin, 'bubble--with-avatar': userName || userPicture }">
-  <div class="bubble__user" *ngIf="userName || userPicture">
+<div class="fd__chat-bubble" *ngIf="message" [ngClass]="{ 'bubble--sender': sender, 'bubble--with-avatar': userName || userPicture }">
+  <div class="bubble__user" *ngIf="userName && sender || userPicture && sender">
     <fd-avatar [size]="avatarSize" [initial]="userName ? userName : null" [image]="userPicture ? userPicture : null"></fd-avatar>
   </div>
   <div class="bubble__message" [ngStyle]="{ 'margin-left': userName || userPicture ? (avatarSize + 8) + 'px' : 0 }">
