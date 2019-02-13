@@ -18,7 +18,7 @@
 
         &.message--sender + .message--sender,
         &.message--recipient + .message--recipient{
-            margin-top: 2px;
+            margin-top: 8px;
         }
 
         &:last-child:nth-child(2){
@@ -39,5 +39,7 @@
 
     .chat__container{
         padding-bottom: 16px;
+        padding-left: 2px;
+        padding-right: 2px;
     }
 }

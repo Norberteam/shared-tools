@@ -16,15 +16,6 @@ export class FlitdeskChatInputComponent {
   public rowControl: number = 1;
   public showButton: boolean = false;  
 
-  ngOnInit(){
-    //Dealing with the scroll and fixed-content when the keyboard is open
-    // let scrollContent = this.input.nativeElement.closest('.scroll-content');
-    // let fixedContent = scrollContent ? scrollContent.parentElement.querySelector('.fixed-content') : null;
-    // let inputHeight = this.input.nativeElement.offsetHeight;
-    // if(fixedContent && inputHeight) fixedContent.style.marginBottom = `${inputHeight}px`;
-    // if(scrollContent && inputHeight) scrollContent.style.paddingBottom = `${inputHeight}px`;
-  }
-
   /**
    * Checking when the user typed something and evaluating it. 
    * @param event the keyup event value
@@ -60,12 +51,4 @@ export class FlitdeskChatInputComponent {
       input.style.height = 'auto';
     }
   }  
-
-  /**
-   * When the user pressed then `send` button in the message
-   * @param event The written message
-   */
-  // send(event: any){
-  //   this.onSend.emit(event);
-  // }
 }

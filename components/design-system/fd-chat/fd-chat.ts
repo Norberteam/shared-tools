@@ -31,8 +31,6 @@ export class FlitdeskChatComponent {
         if(messages){
           this.messageRecord = messages;
           this.messageList = this.organizeMessages(messages);
-          console.log('Message list: ', this.messageList);
-          console.log('Message record: ', this.messageRecord);
           //Using change detection to reload the DOM
           this.changeDetection.markForCheck();
         }
