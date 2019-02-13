@@ -4,6 +4,6 @@
     <ion-icon [name]="icon"></ion-icon>
   </div>
   <div class="avatar__initial" *ngIf="!image && !icon && initial">
-    <span class="initial" [ngStyle]="{ 'line-height': size ? size + 'px' : 'normal', 'font-size': (size / 2) + 'px', 'padding-top': size ? 0 : '4px' }">{{ initial | slice:0:1 }}</span>
+    <span class="initial" [ngStyle]="{ 'line-height': size ? size + 'px' : 'normal', 'font-size': (size / 2) + 'px', 'padding-top': size ? (size / 2)/10 + 'px' : '4px' }">{{ initial | slice:0:1 }}</span>
   </div>
 </div>

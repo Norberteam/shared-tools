@@ -4,9 +4,10 @@
     position: relative;
 
     .bubble__message{
-        background-color: color($colors, primary);
+        background-color: color($colors, fd-grey05);
         border-radius: 24px;
-        color: color($colors, clean);
+        box-shadow: 1px 1px 4px 0 color($colors, fd-grey20);
+        color: color($colors, text);
         display: inline-block;
         font-size: map-get($fontSizes, xs);
         max-width: 80%;
@@ -26,11 +27,9 @@
 
         .bubble__message{
             background-color: color($colors, clean);
-            border: 1px solid color($colors, fd-grey10);
             color: color($colors, text);
             order: -1;
             text-align: left;
-            @include app-box-shadow();
         }
 
         &.bubble--with-avatar{

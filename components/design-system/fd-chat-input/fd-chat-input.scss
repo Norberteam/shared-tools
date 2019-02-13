@@ -9,14 +9,13 @@
     
     &.chat-input--fixed{
         background-color: color($colors, clean);
+        border-top: 1px solid;
         bottom: 0;
         left: 0;
-        padding-bottom: 24px;
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-top: 16px;
+        padding: 16px;
         position: absolute;
         z-index: 1;
+        @include app-alpha-attribute("border-color", color($colors, fd-grey10), color($colors, clean));
     }
 
     &.chat-input--with-options{
@@ -38,7 +37,7 @@
     
         .chat-input__form{
             left: 72px;
-            bottom: 24px;
+            bottom: 16px;
             position: absolute;
             width: calc(100% - 88px);
         }
