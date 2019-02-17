@@ -18,6 +18,7 @@ export class FlitdeskChatComponent {
   @Input('input-placeholder') inputPlaceholder: string;
   @Input('admin') admin: boolean = false;
   @Output('onMessage') onMessage: EventEmitter<any> = new EventEmitter();
+  @Output('onButtonClick') onButtonClick: EventEmitter<any> = new EventEmitter();
   public messageRecord: any = [];
   public messageList: any = [];
   public now = new Date();
@@ -69,6 +70,8 @@ export class FlitdeskChatComponent {
     let chatContent = this.chat.nativeElement.querySelector('.scroll-content');
     let padding = 32;
     scrollContent.style.paddingTop = 0;
+    scrollContent.style.paddingLeft = 0;
+    scrollContent.style.paddingRight = 0;
     chatContent.style.height = `${scrollContent.offsetHeight - input.offsetHeight - (padding / 2)}px`;
     chatContent.style.paddingBottom = `${input.offsetHeight + (padding / 2)}px`;
   }
@@ -122,6 +125,14 @@ export class FlitdeskChatComponent {
 
   isSender(bubble: any){
     if(bubble && bubble.type) return bubble.type === 'TASK.MESSAGE.FROM_ADMIN' ? (this.admin ? false : true) : bubble.type === 'TASK.MESSAGE.FROM_USER' ? (this.admin ? true : false) : null;
+  }
+
+  /**
+   * Making the `onButtonClick` event present on `fd-chat-input` available from the `fd-chat` component.
+   * @param event The event that came from `fd-chat-input`
+   */
+  inputButtonClick(event: any){
+    this.onButtonClick.emit(event);
   }
 
 }

@@ -14,32 +14,27 @@
         left: 0;
         padding: 16px;
         position: absolute;
-        z-index: 1;
         @include app-alpha-attribute("border-color", color($colors, fd-grey10), color($colors, clean));
     }
 
     &.chat-input--with-options{
         .chat-input__options{
-            float: left;
             padding-bottom: 2px;
             padding-top: 2px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             width: 56px;
     
             .options__button{
                 height: 40px;
                 width: 40px;
-    
-                ion-icon{
-                    font-size: map-get($fontSizes, xxl)
-                }
             }
         }
     
         .chat-input__form{
-            left: 72px;
-            bottom: 16px;
-            position: absolute;
-            width: calc(100% - 88px);
+            margin-left: 56px;
+            width: calc(100% - 56px);
         }
 
         &:not(.chat-input--fixed){

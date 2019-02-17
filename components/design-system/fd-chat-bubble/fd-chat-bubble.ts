@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class FlitdeskChatBubbleComponent {
   @Input('message') message: string;
+  @Input('image') image: string;
   @Input('user-picture') userPicture: string;
   @Input('user-name') userName: string;
   @Input('sender') sender: boolean = false;
