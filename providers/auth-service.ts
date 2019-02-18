@@ -18,7 +18,7 @@ import * as _ from 'lodash';
 @Injectable()
 export class AuthService {
   constructor(
-    private appLocalStorageService: AppLocalStorageService, 
+    private appLocalStorageService: AppLocalStorageService,
     private app: AppService,
     private platform: Platform,
     private safariViewController: SafariViewController,
@@ -43,10 +43,12 @@ export class AuthService {
     return this.appLocalStorageService.get(Constants.LS['USER']);
   }
 
-
   socialLogin(jwtToken: string) {
     const decoded : any = this.jwtService.decode(jwtToken);
-    return this.loginSuccess(decoded.payload); // Locally store user Profile
+    if(decoded && decoded.payload && decoded.payload.error) {
+        const payload = decoded.payload;
+        return { error: true, msg: payload.msg };
+    } else return this.loginSuccess(decoded.payload); // Locally store user Profile
   }
 
   loginSuccess(profile: any) {
@@ -83,7 +85,7 @@ export class AuthService {
       }
     } catch (e) {
         console.log(e);
-    }    
+    }
   }
 
   openUrlSafariController(url) {
