@@ -4,32 +4,62 @@
     position: relative;
 
     .bubble__message{
-        background-color: color($colors, primary);
+        background-color: color($colors, fd-grey05);
         border-radius: 24px;
-        color: color($colors, clean);
+        box-shadow: 1px 1px 4px 0 color($colors, fd-grey20);
+        color: color($colors, text);
         display: inline-block;
         font-size: map-get($fontSizes, xs);
         max-width: 80%;
         padding: 8px 16px;
         text-align: right;
 
+        .bubble__image{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 24px;
+            height: 180px;
+            margin-left: -8px;
+            margin-right: -8px;
+            width: 180px;
+        }
+
         blockquote{
             font-family: $font-family-base;
+            line-height: 1.4em;
             margin: 0;
             white-space: pre-line;
         }
     }
 
-    &.bubble--admin{
+    &.bubble--with-image{
+        .bubble__message{
+            padding-bottom: 0;
+        }
+        
+        &.bubble--with-message{
+            .bubble__message{
+                padding-bottom: 8px;
+            }
+            .bubble__image{
+                border-radius: 24px 24px 0 0;
+            }
+        }
+
+        blockquote{
+            margin-top: 8px;
+        }
+    }
+
+    &.bubble--sender{
         justify-content: flex-start;
 
         .bubble__message{
             background-color: color($colors, clean);
-            border: 1px solid color($colors, fd-grey10);
             color: color($colors, text);
             order: -1;
             text-align: left;
-            @include app-box-shadow();
         }
 
         &.bubble--with-avatar{

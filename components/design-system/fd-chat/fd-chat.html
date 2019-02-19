@@ -17,5 +17,5 @@
       <ng-content select="[chat-footer]"></ng-content>
     </div>
   </ion-scroll>
-  <fd-chat-input [placeholder]="inputPlaceholder" [options]="inputOptions" [button-label]="sendButton" (onSend)="addMessage($event)" (onButtonClick)="inputButtonClick($event)"></fd-chat-input>
+  <fd-chat-input [placeholder]="inputPlaceholder" [options]="inputOptions" [button-label]="sendButton" (onSend)="addMessage($event)" (onButtonClick)="inputButtonClick($event)" [hidden]="!input"></fd-chat-input>
 </div>
