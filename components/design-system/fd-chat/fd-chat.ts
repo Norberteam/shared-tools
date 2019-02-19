@@ -72,8 +72,7 @@ export class FlitdeskChatComponent {
     scrollContent.style.paddingTop = 0;
     scrollContent.style.paddingLeft = 0;
     scrollContent.style.paddingRight = 0;
-    chatContent.style.height = `${scrollContent.offsetHeight - input.offsetHeight - (padding / 2)}px`;
-    chatContent.style.paddingBottom = `${input.offsetHeight + (padding / 2)}px`;
+    chatContent.style.height = `${scrollContent.offsetHeight - (input.offsetHeight * 2) - padding}px`;
   }
 
   /**
