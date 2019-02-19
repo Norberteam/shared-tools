@@ -35,6 +35,7 @@ fd-avatar {
                     color: color($colors, clean);
                     display: block;
                     font-size: map-get($fontSizes, xl);
+                    font-weight: 600;
                     line-height: $profileAvatarSize;
                     padding-top: 4px;
                     text-align: center;

@@ -5,10 +5,10 @@
     </div>
     <div class="chat__container">
       <div class="chat__day" *ngFor="let day of messageList">
-        <div class="chat__hour" *ngFor="let hour of day.hours">
-          <span class="day__title">{{ hour.hour | date: 'EEEE dd MMM HH:mm' }}</span>
-          <div class="chat__message" #messageBubbles *ngFor="let bubble of hour.messages">
-            <fd-chat-bubble [message]="bubble.text" [admin]="bubble && bubble.type && bubble.type === 'TASK.MESSAGE.FROM_ADMIN' ? true : false" [user-name]="bubble.user && bubble.user.name ? bubble.user.name : null" [user-picture]="bubble.user && bubble.user.picture ? bubble.user.picture : null"></fd-chat-bubble>
+        <div class="chat__hour" *ngFor="let group of day.groups">
+          <span class="day__title">{{ group.hour | date: 'EEEE dd MMM HH:mm' }}</span>
+          <div class="chat__message" #messageBubbles *ngFor="let bubble of group.messages" [ngClass]="{ 'message--sender': isSender(bubble), 'message--recipient': !isSender(bubble) }">
+            <fd-chat-bubble [message]="bubble.text" [sender]="isSender(bubble)" [user-name]="bubble.payload && bubble.payload.senderFirstName ? bubble.payload.senderFirstName : null" [user-picture]="bubble.senderPicture ? bubble.senderPicture : null" [image]="bubble.attachments && bubble.attachments.length > 0 ? bubble.attachments[0] : null"></fd-chat-bubble>
           </div>
         </div>
       </div>
@@ -17,5 +17,5 @@
       <ng-content select="[chat-footer]"></ng-content>
     </div>
   </ion-scroll>
-  <fd-chat-input [placeholder]="inputPlaceholder" [options]="inputOptions" [button-label]="sendButton" (onSend)="addMessage($event)"></fd-chat-input>
+  <fd-chat-input [placeholder]="inputPlaceholder" [options]="inputOptions" [button-label]="sendButton" (onSend)="addMessage($event)" (onButtonClick)="inputButtonClick($event)"></fd-chat-input>
 </div>

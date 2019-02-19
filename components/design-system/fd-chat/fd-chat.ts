@@ -1,4 +1,5 @@
-import { Component, Input, ViewChild, ViewChildren, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ViewChildren, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -10,21 +11,33 @@ export class FlitdeskChatComponent {
   @ViewChild('chat') chat: ElementRef;
   @ViewChild('content') content;
   @ViewChildren('messageBubbles') messageBubbles;
-  @Input('messages') messages: any;
+  @Input('messages') messages: BehaviorSubject<any>; //The messages should be received as an observable in order to receive data and upload the DOM
   @Input('send-button') sendButton: string;
+  @Input('input') input: boolean = true;
   @Input('input-options') inputOptions: boolean;
   @Input('input-placeholder') inputPlaceholder: string;
+  @Input('admin') admin: boolean = false;
+  @Output('onMessage') onMessage: EventEmitter<any> = new EventEmitter();
+  @Output('onButtonClick') onButtonClick: EventEmitter<any> = new EventEmitter();
   public messageRecord: any = [];
   public messageList: any = [];
   public now = new Date();
 
-  constructor(private datePipe: DatePipe) {}
+  constructor(private datePipe: DatePipe, private changeDetection: ChangeDetectorRef) {}
 
   ngOnInit(){
-    if(this.messages){
-      this.messageRecord = this.messages; //Keeping a record in the old format to organize the messages when a new one is added.
-      this.messageList = this.organizeMessages(this.messages)
+    //Subscribing to an observable of messages to be able to proccess it before showing.
+    if(this.messages && this.messages.subscribe){
+      this.messages.subscribe((messages: any) => {
+        if(messages){
+          this.messageRecord = messages;
+          this.messageList = this.organizeMessages(messages);
+          //Using change detection to reload the DOM
+          this.changeDetection.markForCheck();
+        }
+      });
     }
+
     this.handleHeight();
   }
 
@@ -33,6 +46,7 @@ export class FlitdeskChatComponent {
    * @param message what the user has typed
    */
   addMessage(message: string){
+    this.onMessage.emit(message); //Sending the message to be stored
     let newMessage = { created: new Date().toISOString(), text: message };
     this.messageRecord.push(newMessage);
     this.messageList = this.organizeMessages(this.messageRecord);
@@ -44,6 +58,7 @@ export class FlitdeskChatComponent {
       let scroll = this.content._scrollContent.nativeElement.scrollTop;
       this.content._scrollContent.nativeElement.scrollTop = scroll + last + dayTitle; //Adding the height of the last message to the scroll.
     });
+
   }
 
   /**
@@ -55,8 +70,9 @@ export class FlitdeskChatComponent {
     let chatContent = this.chat.nativeElement.querySelector('.scroll-content');
     let padding = 32;
     scrollContent.style.paddingTop = 0;
-    chatContent.style.height = `${scrollContent.offsetHeight - input.offsetHeight - padding}px`;
-    chatContent.style.paddingBottom = `${input.offsetHeight + (padding / 2)}px`;
+    scrollContent.style.paddingLeft = 0;
+    scrollContent.style.paddingRight = 0;
+    chatContent.style.height = `${scrollContent.offsetHeight - (input.offsetHeight * 2) - padding}px`;
   }
 
   /**
@@ -64,7 +80,7 @@ export class FlitdeskChatComponent {
    * @param list list of messages received by Input
    */
   organizeMessages(list: any){
-    //Sorting the events before organizing them
+    //Sorting the messages before organizing them
     list.sort((a, b) => {
       if(!a.created || !b.created) return 0;
       return new Date(a.created) < new Date(b.created) ? -1 : (new Date(a.created) > new Date(b.created) ? 1 : 0);
@@ -80,31 +96,42 @@ export class FlitdeskChatComponent {
       //organized array is empty for the moment, so we need to populate it with the first records
       if(organized.length === 0 || organized.findIndex(item => item.id === day.id) === -1){
         let messages = [];
-        day['hours'] = []; 
+        day['groups'] = []; 
 
         messages.push(message);
-        day['hours'].push({ id: this.datePipe.transform(created, 'HH'), hour: created, messages: messages }); // Inserting the hours array for that particular day
+        day['groups'].push({ id: this.datePipe.transform(created, 'HH'), hour: created, messages: messages }); // Inserting the hours array for that particular day
         organized.push(day);
 
       }else if(organized.findIndex(item => item.id === day.id) !== -1){ //If there's a record for the day
         let index = organized.findIndex(item => item.id === day.id);
         
-        if(organized[index].hours && organized[index].hours.findIndex(h => h.id === this.datePipe.transform(created, 'HH')) !== -1){ //If there's a record for the hour
-        let hourIndex = organized[index].hours.findIndex(h => h.id === this.datePipe.transform(created, 'HH'));
-        organized[index].hours[hourIndex].messages.push(message);
-      }else{ //If there isn't a record for the hour
-          // console.log('Message found with the same hour record: ', message, organized[index].hours);
+        if(organized[index].groups && organized[index].groups.findIndex(group => group.id === this.datePipe.transform(created, 'HH')) !== -1){ //If there's a record for the hour
+          let groupIndex = organized[index].groups.findIndex(group => group.id === this.datePipe.transform(created, 'HH'));
+          organized[index].groups[groupIndex].messages.push(message);
+        }else{ //If there isn't a record for the hour
           let messages = [];
-          if(!organized[index].hours) organized[index]['hours'] = [];
+          if(!organized[index].groups) organized[index]['groups'] = [];
 
           messages.push(message);
-          organized[index].hours.push({ id: this.datePipe.transform(created, 'HH'), hour: created, messages: messages });
+          organized[index].groups.push({ id: this.datePipe.transform(created, 'HH'), hour: created, messages: messages });
         }
 
       }
     });
 
     return organized;
+  }
+
+  isSender(bubble: any){
+    if(bubble && bubble.type) return bubble.type === 'TASK.MESSAGE.FROM_ADMIN' ? (this.admin ? false : true) : bubble.type === 'TASK.MESSAGE.FROM_USER' ? (this.admin ? true : false) : null;
+  }
+
+  /**
+   * Making the `onButtonClick` event present on `fd-chat-input` available from the `fd-chat` component.
+   * @param event The event that came from `fd-chat-input`
+   */
+  inputButtonClick(event: any){
+    this.onButtonClick.emit(event);
   }
 
 }

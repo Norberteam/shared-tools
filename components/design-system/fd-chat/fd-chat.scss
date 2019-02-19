@@ -1,10 +1,4 @@
 .fd__chat{
-    .scroll-content{
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        padding-top: 0 !important;
-    }
-
     .chat__day:first-child{
         .chat__hour:first-child{
             .day__title{
@@ -14,10 +8,15 @@
     }
 
     .chat__message{
-        margin-bottom: 4px;
+        margin-top: 16px;
+
+        &.message--sender + .message--sender,
+        &.message--recipient + .message--recipient{
+            margin-top: 8px;
+        }
 
         &:last-child:nth-child(2){
-            margin-bottom: 16px;
+            margin-top: 16px;
         }
     }
 
@@ -26,9 +25,15 @@
         display: block;
         font-size: map-get($fontSizes, xs);
         font-weight: 600;
-        padding-bottom: 16px;
-        padding-top: 16px;
+        padding-bottom: 8px;
+        padding-top: 24px;
         text-align: center;
         text-transform: capitalize;
+    }
+
+    .chat__container{
+        padding-bottom: 16px;
+        padding-left: 2px;
+        padding-right: 2px;
     }
 }

@@ -39,6 +39,7 @@
     }
 }
 
+@include makeIcon(message, '\e937');
 @include makeIcon(parameters, '\e936');
 @include makeIcon(pencil, '\e934');
 @include makeIcon(thumbs-up, '\e935');

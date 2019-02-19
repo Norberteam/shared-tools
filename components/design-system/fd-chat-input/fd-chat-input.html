@@ -1,7 +1,7 @@
-<div class="fd__chat-input" [ngClass]="{ 'chat-input--with-options': options, 'chat-input--fixed': fixed }">
+<div class="fd__chat-input" [ngClass]="{ 'chat-input--with-options': options, 'chat-input--fixed': fixed }" [ngStyle]="{ 'z-index': fixed ? 100002 : 'auto' }">
   <div class="chat-input__options" *ngIf="options">
-    <button class="options__button" ion-fab>
-      <ion-icon name="norbert-plus"></ion-icon>
+    <button class="options__button" ion-fab (click)="buttonClicked()">
+      <ion-icon name="norbert-camera"></ion-icon>
     </button>
   </div>
   <div class="chat-input__form">

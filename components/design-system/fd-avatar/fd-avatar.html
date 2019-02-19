@@ -1,9 +1,9 @@
-<div class="fd__avatar" (click)="avatarClicked()" *ngIf="image || icon || initial" [ngClass]="{ 'avatar--with-initial': !image && !icon && initial }">
-    <div class="avatar__photo" [style.background-image]="sanitizeImage(image)" *ngIf="image"></div>
-    <div class="avatar__icon" *ngIf="!image && icon">
-      <ion-icon [name]="icon"></ion-icon>
-    </div>
-    <div class="avatar__initial" *ngIf="!image && !icon && initial">
-      <span class="initial">{{ initial | slice:0:1 }}</span>
-    </div>
+<div class="fd__avatar" (click)="avatarClicked()" *ngIf="image || icon || initial" [ngClass]="{ 'avatar--with-initial': !image && !icon && initial, 'avatar--with-custom-size': size }" [ngStyle]="{ 'width': size ? size + 'px' : auto, 'height': size ? size + 'px' : auto }">
+  <div class="avatar__photo" [style.background-image]="sanitizeImage(image)" *ngIf="image"></div>
+  <div class="avatar__icon" *ngIf="!image && icon">
+    <ion-icon [name]="icon"></ion-icon>
   </div>
+  <div class="avatar__initial" *ngIf="!image && !icon && initial">
+    <span class="initial" [ngStyle]="{ 'line-height': size ? size + 'px' : '70px', 'font-size': (size / 2) + 'px', 'padding-top': size ? (size / 2)/10 + 'px' : '4px' }">{{ initial | slice:0:1 }}</span>
+  </div>
+</div>
