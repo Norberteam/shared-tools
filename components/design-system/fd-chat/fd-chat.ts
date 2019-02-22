@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
 })
 export class FlitdeskChatComponent {
   @ViewChild('chat') chat: ElementRef;
-  @ViewChild('content') content;
+  @ViewChild('content') content: any;
   @ViewChildren('messageBubbles') messageBubbles;
   @Input('messages') messages: BehaviorSubject<any>; //The messages should be received as an observable in order to receive data and upload the DOM
   @Input('send-button') sendButton: string;
@@ -17,8 +17,11 @@ export class FlitdeskChatComponent {
   @Input('input-options') inputOptions: boolean;
   @Input('input-placeholder') inputPlaceholder: string;
   @Input('admin') admin: boolean = false;
+  @Input('height') height: number;
+  @Input('active-message') activeMessage: any;
   @Output('onMessage') onMessage: EventEmitter<any> = new EventEmitter();
   @Output('onButtonClick') onButtonClick: EventEmitter<any> = new EventEmitter();
+  @Output('onBubbleImageClick') onBubbleImageClick: EventEmitter<string> = new EventEmitter();
   public messageRecord: any = [];
   public messageList: any = [];
   public now = new Date();
@@ -37,7 +40,6 @@ export class FlitdeskChatComponent {
         }
       });
     }
-
     this.handleHeight();
   }
 
@@ -72,8 +74,9 @@ export class FlitdeskChatComponent {
     scrollContent.style.paddingTop = 0;
     scrollContent.style.paddingLeft = 0;
     scrollContent.style.paddingRight = 0;
-    chatContent.style.height = `${scrollContent.offsetHeight - input.offsetHeight - (padding / 2)}px`;
-    chatContent.style.paddingBottom = `${input.offsetHeight + (padding / 2)}px`;
+
+    if(!this.height) chatContent.style.height = `${scrollContent.offsetHeight - (input.offsetHeight * 2) - padding}px`;
+    else chatContent.style.height = `${this.height - (input.offsetHeight + 1) - padding}px`;
   }
 
   /**
@@ -133,6 +136,14 @@ export class FlitdeskChatComponent {
    */
   inputButtonClick(event: any){
     this.onButtonClick.emit(event);
+  }
+
+  /**
+   * Emit an event when the bubble image was clicked. With this, is possible to show it in full screen.
+   * @param image the url of the image clicked.
+   */
+  bubbleImageClick(image: string){
+    this.onBubbleImageClick.emit(image);
   }
 
 }
