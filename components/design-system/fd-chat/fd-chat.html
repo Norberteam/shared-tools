@@ -8,7 +8,7 @@
         <div class="chat__hour" *ngFor="let group of day.groups">
           <span class="day__title">{{ group.hour | date: 'EEEE dd MMM HH:mm' }}</span>
           <div class="chat__message" #messageBubbles *ngFor="let bubble of group.messages" [ngClass]="{ 'message--sender': isSender(bubble), 'message--recipient': !isSender(bubble) }">
-            <fd-chat-bubble [message]="bubble.text" [sender]="isSender(bubble)" [user-name]="bubble.payload && bubble.payload.senderFirstName ? bubble.payload.senderFirstName : null" [user-picture]="bubble.senderPicture ? bubble.senderPicture : null" [image]="bubble.attachments && bubble.attachments.length > 0 ? bubble.attachments[0] : null"></fd-chat-bubble>
+            <fd-chat-bubble [id]="bubble.id" [message]="bubble.text" [sender]="isSender(bubble)" [user-name]="bubble.payload && bubble.payload.senderFirstName ? bubble.payload.senderFirstName : null" [user-picture]="bubble.senderPicture ? bubble.senderPicture : null" [image]="bubble.attachments && bubble.attachments.length > 0 ? bubble.attachments[0] : null" (onImageClick)="bubbleImageClick($event)"></fd-chat-bubble>
           </div>
         </div>
       </div>
