@@ -84,7 +84,7 @@ fd-select {
 
 .fd__select-list{
     ion-backdrop{
-        background-color: transparent;
+        background-color: transparent !important;
     }
 
     &.popover-ios,

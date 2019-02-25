@@ -12,6 +12,7 @@ export class FlitdeskSelectComponent extends AbstractValueAcessor<string>  {
   @Input('options') options: string[];
   @Input('label') label: string;
   @Input('placeholder') placeholder: string;
+  @Input('selected') selected: string;
   @Input('list-width') listWidth: number;
   @Input('list-height') listHeight: number;
   @Output('onSelect') onSelect: EventEmitter<any> = new EventEmitter();
@@ -26,6 +27,10 @@ export class FlitdeskSelectComponent extends AbstractValueAcessor<string>  {
     private platform: Platform
   ) {
     super();
+  }
+
+  ngOnInit(){
+    if(this.selected) this.optionActive = this.selected;
   }
 
   /**
@@ -54,7 +59,7 @@ export class FlitdeskSelectComponent extends AbstractValueAcessor<string>  {
           popover.querySelector('.popover-content').style.width = `${ this.listWidth ? this.listWidth : selectBounding.width }px`;
           popover.querySelector('.popover-content').style.right = `${selectRight}px`;     
           popover.querySelector('.popover-content').style.maxHeight = `${ this.listHeight ? this.listHeight : this.defaultListHeight }px`;
-          if(this.platform.is('android') && marginTop) popover.querySelector('.popover-content').style.marginTop = `${ marginTop }px`;
+          if(popover.classList.contains('popover-md') && marginTop) popover.querySelector('.popover-content').style.marginTop = `${ marginTop }px`;
         }
       }else{
         this.showList = false;
