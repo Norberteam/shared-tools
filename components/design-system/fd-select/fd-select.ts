@@ -54,7 +54,7 @@ export class FlitdeskSelectComponent extends AbstractValueAcessor<string>  {
           popover.querySelector('.popover-content').style.width = `${ this.listWidth ? this.listWidth : selectBounding.width }px`;
           popover.querySelector('.popover-content').style.right = `${selectRight}px`;     
           popover.querySelector('.popover-content').style.maxHeight = `${ this.listHeight ? this.listHeight : this.defaultListHeight }px`;
-          if(this.platform.is('android') && marginTop) popover.querySelector('.popover-content').style.marginTop = `${ marginTop }px`;
+          if(popover.classList.contains('popover-md') && marginTop) popover.querySelector('.popover-content').style.marginTop = `${ marginTop }px`;
         }
       }else{
         this.showList = false;
