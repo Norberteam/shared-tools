@@ -12,6 +12,7 @@ export class FlitdeskSelectComponent extends AbstractValueAcessor<string>  {
   @Input('options') options: string[];
   @Input('label') label: string;
   @Input('placeholder') placeholder: string;
+  @Input('selected') selected: string;
   @Input('list-width') listWidth: number;
   @Input('list-height') listHeight: number;
   @Output('onSelect') onSelect: EventEmitter<any> = new EventEmitter();
@@ -26,6 +27,10 @@ export class FlitdeskSelectComponent extends AbstractValueAcessor<string>  {
     private platform: Platform
   ) {
     super();
+  }
+
+  ngOnInit(){
+    if(this.selected) this.optionActive = this.selected;
   }
 
   /**
