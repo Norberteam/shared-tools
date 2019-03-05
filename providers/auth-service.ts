@@ -70,7 +70,12 @@ export class AuthService {
   logout(isAuth: boolean, isVisitor?: boolean) {
     const user = this.appLocalStorageService.get(Constants.LS['USER']);
     const accessToken = user ? user.token : "";
-    let deepLink = false;
+    let deepLink;
+    if (this.platform.is('core') || this.platform.is('mobileweb')) {
+        deepLink = false;
+    } else {
+        deepLink = true;
+    }
     let visitorParam = (isVisitor) ? '&app=visitor' : '';
 
     this.removeLocalData();
