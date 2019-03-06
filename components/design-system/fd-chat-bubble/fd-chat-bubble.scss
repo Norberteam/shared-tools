@@ -39,6 +39,12 @@
         .bubble__message{
             padding-bottom: 0;
         }
+
+        &:not(.bubble--with-message){
+            .bubble__image{
+                margin-bottom: -16px;
+            }
+        }
         
         &.bubble--with-message{
             .bubble__message{

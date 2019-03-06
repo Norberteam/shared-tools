@@ -1,9 +1,9 @@
-<div class="fd__chat-bubble" *ngIf="message || image" [ngClass]="{ 'bubble--sender': sender, 'bubble--with-avatar': userName || userPicture, 'bubble--with-image': image, 'bubble--with-message': message }">
+<div class="fd__chat-bubble" *ngIf="message || image" [ngClass]="{ 'bubble--sender': sender, 'bubble--with-avatar': userName || userPicture, 'bubble--with-image': image, 'bubble--with-message': message }" [attr.data-id]="id ? id : null">
   <div class="bubble__user" *ngIf="userName && sender || userPicture && sender">
     <fd-avatar [size]="avatarSize" [initial]="userName ? userName : null" [image]="userPicture ? userPicture : null"></fd-avatar>
   </div>
   <div class="bubble__message" [ngStyle]="{ 'margin-left': userName || userPicture ? (avatarSize + 8) + 'px' : 0 }">
-    <div class="bubble__image" *ngIf="image" [ngStyle]="{ 'background-image': image ? 'url(' + image + ')' : 'transparent' }"></div>
+    <div class="bubble__image" *ngIf="image" [ngStyle]="{ 'background-image': image ? 'url(' + image + ')' : 'transparent' }" (click)="imageClick(image)"></div>
     <blockquote class="message">{{ message }}</blockquote>
   </div>
 </div>
