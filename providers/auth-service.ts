@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import { Platform } from 'ionic-angular';
 import { SafariViewController } from '@ionic-native/safari-view-controller';
 import { JwtService } from './jwt/jwt-service';
+import { PreferencesService } from './../../src/providers/app-preferences.service';
 import * as _ from 'lodash';
 
 /*
@@ -22,7 +23,8 @@ export class AuthService {
     private app: AppService,
     private platform: Platform,
     private safariViewController: SafariViewController,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private preferencesService: PreferencesService
   ) {
     console.log('Hello AuthServiceProvider Provider');
   }
@@ -114,5 +116,11 @@ export class AuthService {
   openUrlInAppWebBrowser(url) {
     const browser = new InAppBrowser();
     const browserRef = browser.create(url, '_system');
+  }
+
+  handleRouteGuard(nav: any, page: string) {
+      if (!this.preferencesService.isUserProfile()){
+        nav.setRoot(page);
+    }
   }
 }
