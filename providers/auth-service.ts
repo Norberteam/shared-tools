@@ -61,7 +61,7 @@ export class AuthService {
 
   // Remove credentials and partially local storage
   removeLocalData() {
-    this.appLocalStorageService.remove(Constants.LS['USER']);
+    this.appLocalStorageService.clear(); //Clearing all data available on localStorage
     this.app.isAuth = false;
   }
 

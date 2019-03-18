@@ -32,4 +32,11 @@ export class AppLocalStorageService {
     save(key: string, data: any): void {
         localStorage.setItem(Constants.APP_BUNDLE_ID + '.' + key, JSON.stringify(data));
     }
+
+    /**
+     * Clear localStorage data
+     */
+    clear(){
+        localStorage.clear();
+    }    
 }
