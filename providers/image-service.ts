@@ -82,9 +82,9 @@ export class ImageService {
                 correctOrientation: true
               };
 
-              if(direction && direction === 'front') options['cameraDirection'] = this.camera.Direction.FRONT;
-              if(width && width > 0) options['targetWidth'] = width;
-              if(height && height > 0) options['targetHeight'] = height;
+              if(direction && direction === 'front') options.cameraDirection = this.camera.Direction.FRONT;
+              if(width && width > 0) options.targetWidth = width;
+              if(height && height > 0) options.targetHeight = height;
 
 
               return Rx.Observable.fromPromise(this.camera.getPicture(options));
@@ -130,7 +130,6 @@ export class ImageService {
 
   updloadToCdn(imageData: any) {
       return Rx.Observable.create(observer => { // Extract picture
-          // 'data:image/jpeg;base64,' +
           let base64Image = imageData;
           var contentType = 'image/jpeg';
           var blob = b64toBlob(base64Image, contentType);
