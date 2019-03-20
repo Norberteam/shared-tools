@@ -1,9 +1,22 @@
 import {DomSanitizer} from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AppService } from './app.service';
+import { MockService } from './mock-service';
+import { LoaderService } from './loader-service';
+import Rx from "rxjs/Rx";
+import b64toBlob from 'b64-to-blob'
+import uploadcare from 'uploadcare-widget';
 
 @Injectable()
 export class ImageService {
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer, 
+    private camera: Camera,
+    private app: AppService,
+    private loaderService: LoaderService,
+    private mockService: MockService
+  ) {}
 
   /**
    * parse the url format in PROTOCOL + CDNHOST + UID + NAME=OPTIONAL
@@ -49,4 +62,90 @@ export class ImageService {
   getSanitizedImageBackground(url: string) {
     return this.sanitizer.bypassSecurityTrustStyle(`url(${url})`);
   }
+
+  /**
+   * Get image from the camera and just return the image data without uploading.
+   * @param direction The direction for the camera (`front` or `back`)
+   */
+  getImageFromCamera(direction?: string, width?: number, height?: number){
+    return this.loaderService.showLoader()
+    .switchMap(obs => Rx.Observable.of(this.app.isMobilePlatform()))
+    .flatMap(isMobile => {
+        this.loaderService.dismissLoader(); // Dismiss loader before opening Camera activity to avoid losing reference
+
+        if(isMobile) {
+            const options: CameraOptions = {
+                quality: 25,
+                destinationType: this.camera.DestinationType.DATA_URL,
+                encodingType: this.camera.EncodingType.JPEG,
+                mediaType: this.camera.MediaType.PICTURE,
+                correctOrientation: true
+              };
+
+              if(direction && direction === 'front') options.cameraDirection = this.camera.Direction.FRONT;
+              if(width && width > 0) options.targetWidth = width;
+              if(height && height > 0) options.targetHeight = height;
+
+
+              return Rx.Observable.fromPromise(this.camera.getPicture(options));
+        } else {
+            // Return mocked image
+            return Rx.Observable.of(this.mockService.mockBase64Image());
+        }
+    })
+    .flatMap((imageData: any) => {
+        return Rx.Observable.of(imageData); //Just return the image data for further use.
+    });
+  }
+
+  getImageFromCameraAndUpload() {
+      return this.loaderService.showLoader()
+      .switchMap(obs => Rx.Observable.of(this.app.isMobilePlatform()))
+      .flatMap(isMobile => {
+          this.loaderService.dismissLoader(); // Dismiss loader before opening Camera activity to avoid losing reference
+
+          if(isMobile) {
+              const options: CameraOptions = {
+                  quality: 25,
+                  destinationType: this.camera.DestinationType.DATA_URL,
+                  encodingType: this.camera.EncodingType.JPEG,
+                  mediaType: this.camera.MediaType.PICTURE,
+                  correctOrientation: true
+                };
+
+                return Rx.Observable.fromPromise(this.camera.getPicture(options));
+          } else {
+              // Return mocked image
+              return Rx.Observable.of(this.mockService.mockBase64Image());
+          }
+      })
+      .flatMap((imageData: any) => {
+          return this.loaderService.showLoader() // Show loader again
+              .switchMap(obs => this.updloadToCdn(imageData));
+      })
+      .flatMap((cdnResponse: any) => {
+          return Rx.Observable.of(cdnResponse.cdnUrl);
+      });
+  }
+
+  updloadToCdn(imageData: any) {
+      return Rx.Observable.create(observer => { // Extract picture
+          let base64Image = imageData;
+          var contentType = 'image/jpeg';
+          var blob = b64toBlob(base64Image, contentType);
+          var file = uploadcare.fileFrom('object', blob);
+          file.done(function(info) {
+              observer.next(info);
+              observer.complete();
+          });
+      });
+  }
+
+  /**
+   * Convert the image data from base64 encoded string
+   * @param imageData 
+   */
+  convertImage(imageData: any){
+      return `data:image/jpeg;base64,${imageData}`;
+  }  
 }
