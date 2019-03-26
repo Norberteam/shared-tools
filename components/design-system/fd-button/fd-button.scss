@@ -86,7 +86,16 @@ fd-button {
                     padding-top: 2px;
                 }
             }
-            
+
+            .provider--flidesk{
+                padding-left: 30px;
+                svg {   
+                    display: inline-block;
+                    transform-origin:30% 50%;
+                    margin: 0 auto;
+                }
+            }
+          
             .button__label{
                 padding-left: 16px;
                 padding-right: 16px;
