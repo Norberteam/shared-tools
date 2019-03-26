@@ -50,6 +50,14 @@ export class BasePage {
     ionViewWillEnter() {
         this.statusBar.overlaysWebView(false);
         this.statusBar.styleDefault();
+
+        /*
+            This event informs 'app.component.ts' that a new page
+            is shown, so that actions can be taken (hide/show left menu ...)
+
+            this requires 'this.pageName' to be defined in concerned page
+            constructor (and for that page to inherit from this class)
+        */
         this.events.publish(Constants.EVENT['NAVIGATION'], this.pageName);
     }
 
