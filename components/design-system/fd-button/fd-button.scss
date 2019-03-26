@@ -88,8 +88,10 @@ fd-button {
             }
 
             .provider--flidesk{
-                svg {
-                    transform: translateX(28px);
+                padding-left: 30px;
+                svg {   
+                    display: inline-block;
+                    transform-origin:30% 50%;
                     margin: 0 auto;
                 }
             }
