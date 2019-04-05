@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import {Injectable, OnInit} from "@angular/core";
 import {Loading, LoadingController, ToastController, Platform} from 'ionic-angular';
 import {Constants} from '../../src/app/app.constants';
@@ -20,6 +21,7 @@ export class AppService implements OnInit {
                 private loadingCtrl: LoadingController,
                 private toastCtrl: ToastController,
                 private platform: Platform,
+                private translationService: TranslateService,
                 private sanitizer: DomSanitizer) {
         return AppService.instance = AppService.instance || this;
     }
@@ -36,6 +38,10 @@ export class AppService implements OnInit {
 
     set account(account: any) {
         this._account = account;
+    }
+
+    translate(key: string) {
+        return this.translationService.get(key);
     }
 
     ngOnInit() {
