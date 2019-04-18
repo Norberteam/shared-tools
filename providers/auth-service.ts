@@ -41,6 +41,39 @@ export class AuthService {
     else return null;
   }
 
+  /**
+   * Open web authentification page:
+   * -- Android: open with native browser instance
+   * -- iOs: open with SafariViewController
+   * -- Browser: redirect the user
+   * @param webUrl
+   * @param mobileUrl
+   */
+  openAuthPage(webUrl: string, mobileUrl: string, nodeEnv: string) {
+    let url: string;
+    if (this.platform.is('core') || this.platform.is('mobileweb')) { // Web case
+      console.log('Web case calling');
+      url = webUrl;
+    } else { // Mobile case
+      console.log('Mobile case url');
+      url = mobileUrl;
+      if (nodeEnv === 'localDev')
+        url = `https://localhost:3000${mobileUrl}`;
+    }
+    if (this.platform.is('ios')) {
+      this.openUrlSafariController(url);
+    } else {
+      this.openUrlInAppWebBrowser(url);
+    }
+  }
+
+  /*
+    Check if login needs being bypassed
+  */
+  isBypassLoginEnabled(constants) {
+    return constants.BYPASS_LOGIN && constants.NODE_ENV === 'localDev';
+  }
+
   getUserProfile() {
     return this.appLocalStorageService.get(Constants.LS['USER']);
   }
