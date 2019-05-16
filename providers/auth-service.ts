@@ -116,7 +116,8 @@ export class AuthService {
     let visitorParam = (isVisitor) ? '&app=visitor' : '';
 
     this.removeLocalData();
-    const redirectUrl = `${Constants.API_URL}/auth/logout?deepLink=${deepLink}&access_token=${accessToken}${visitorParam}`;
+    const apiUrl = Constants.API_URL === '/' ? 'https://localhost:3000' : Constants.API_URL;
+    const redirectUrl = `${apiUrl}/auth/logout?deepLink=${deepLink}&access_token=${accessToken}${visitorParam}`;
     try {
       if (this.platform.is('ios')) {
           this.openUrlSafariController(redirectUrl);

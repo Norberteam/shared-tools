@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SharedRemoteService {
     // TODO Issue #296: Use environments to manage different versions of APIs
-    getApiUrl: string = Constants.API_URL;
+    getApiUrl: string = Constants.API_URL === '/' ? '' : Constants.API_URL;
 
     constructor(public http: HttpClient) {
     }
